@@ -19,6 +19,10 @@ import PlanDetails from '../Pages/PlanDetails/PlanDetails.tsx';
 import WalletScreen from '../Pages/WalletScreen/WalletScreen.tsx';
 import DthScreen from '../Pages/Dth/DthScreen.tsx';
 import D2hIdProviderScreen from '../Pages/Dth/D2hIdProviderScreen.tsx';
+import D2hBillDetails from '../Pages/Dth/D2hBillDetails.tsx';
+import WalletTranscations from '../Pages/WalletScreen/WalletTranscations.tsx';
+import GooglePlay from '../Pages/GooglePlay/GooglePlay.tsx';
+import HelpScreen from '../Pages/HelpScreen/HelpScreen.tsx';
 
 
 function NavigationWrapper() {
@@ -46,6 +50,13 @@ function NavigationWrapper() {
             <Stack.Screen name='DthScreen' component={DthScreen}/>
             <Stack.Screen name='D2hIdProviderScreen' component={D2hIdProviderScreen}/>
 
+            <Stack.Screen name='D2hBillDetailsScreen' component={D2hBillDetails}/>
+
+            <Stack.Screen name='WalletTranscationsScreen' component={WalletTranscations}/>
+
+            <Stack.Screen name='GooglePlayScreen' component={GooglePlay}/>
+
+            <Stack.Screen name='HelpScreen' component={HelpScreen}/>
 
 
             </Stack.Group>

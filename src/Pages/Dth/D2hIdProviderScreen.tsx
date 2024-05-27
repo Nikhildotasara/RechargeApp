@@ -9,7 +9,7 @@ function D2hIdProviderScreen() {
     const navigation=useNavigation();
     const handleProvider=()=>{
         console.log("To id provider")
-        navigation.navigate("D2hIdProviderScreen")
+        navigation.navigate("D2hBillDetailsScreen")
     }
 
   return (
