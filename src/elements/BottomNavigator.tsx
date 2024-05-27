@@ -20,6 +20,10 @@ function BottomNavigator(props:any) {
         navigation.navigate("HelpScreen")
     }
 
+    const handleTrasaction=()=>{
+        navigation.navigate("TransactionScreen")
+    }
+
   return (
     <View style={{width:"100%",backgroundColor:"white" ,minHeight:60,justifyContent:"space-around" ,alignItems:"center" ,flexDirection:"row"}}>
 
@@ -34,7 +38,7 @@ function BottomNavigator(props:any) {
 
             <Text style={{color:"black"}}>Wallet</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{borderWidth:0,alignItems:"center",justifyContent:"space-between" ,}}>
+        <TouchableOpacity onPress={handleTrasaction} style={{borderWidth:0,alignItems:"center",justifyContent:"space-between" ,}}>
             <TranscationImage/>
 
             <Text style={{color:"black"}}>Transaction</Text>

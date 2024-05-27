@@ -6,7 +6,7 @@ const OtpScreen: React.FC<any> = ({ navigation }) => {
   const [otp, setOtp] = useState<string>('');
 
   const handleBack = () => {
-    navigation.navigate('CreateAccount');
+    navigation.goBack();
   };
 
   const handleVerify = () => {

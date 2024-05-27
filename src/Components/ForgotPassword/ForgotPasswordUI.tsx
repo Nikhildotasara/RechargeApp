@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BackButtonSvg from "../../assests/backButton.svg";
-import OtpInput from './OtpInput.tsx';
+// import OtpInput from './OtpInput.tsx';
 import CustomCTA from '../../elements/CustomCTA';
 
 
 import { useTheme } from '../../utils/themeProvider.tsx';
+import CustomInput from '../../elements/CustomInput.tsx';
 
-interface OtpUIProps {
+interface ForgotPasswordUI {
   handleBack: () => void;
   handleVerify: () => void;
   handleOtpChange: (otp: string) => void;
+  handleLogin:()=>void;
+  handleSendCode:()=>void;
+  onEmailChange:()=>void;
 }
 
-const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange }) => {
+const ForgotPasswordUI: React.FC<ForgotPasswordUI> = ({ handleBack, handleVerify, handleOtpChange,handleLogin,handleSendCode,onEmailChange }) => {
 
   const {theme,toogleTheme}=useTheme();
 
@@ -37,8 +41,9 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
       backgroundColor:theme=="dark"?"black":"white"
     },
     backButton: {
-      height: 50,
-      width: 50,
+        paddingLeft:20,
+      height: 40,
+      width: 40,
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'flex-start',
@@ -56,7 +61,7 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
     },
     subtitle: {
       fontSize: 16,
-      textAlign: 'center',
+      textAlign:"left",
       color: theme=="dark"?"white":"black",
     },
     email: {
@@ -85,67 +90,39 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
         <BackButtonSvg height="70%" width="70%" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Please check your email</Text>
+      <Text style={styles.title}>Forgot Password?</Text>
       <Text style={styles.subtitle}>
-        We have sent a code to <Text style={styles.email}>helloworld@gmail.com</Text>
+        Don't worry ! It happens. Please enter the email address associated with your account.
       </Text>
 
-      <View style={styles.otpContainer}>
-        <OtpInput onOtpChange={handleOtpChange} />
-        <CustomCTA onPress={handleVerify} customText="Verify" />
-        <TouchableOpacity disabled={timer>0 ? true :false} style={styles.resendContainer}>
-          <Text style={{fontSize:17,color:"black" ,fontWeight:"600"}}>Send code again</Text>
 
-          {timer>0 ? 
-          <Text>{timer}s</Text>: null
-          }
+      <View style={{borderWidth:0 ,width:"84%" ,marginTop:12,alignItems:"center" ,minHeight:300,justifyContent:"space-around"}}>
+
+        <View style={{width:"100%"}}>
+
+        <Text style={{color:"black" ,marginBottom:10}}>Email address</Text>
+
+        <CustomInput onChange={onEmailChange} placeHolder="Enter your email address"/>
+        </View>
+
+
+        <CustomCTA onPress={handleSendCode} customText="Send code"/>
+
+        <View style={{alignItems:"center"}}>
+
+        <Text style={{color:"black"}}>Remember Password?</Text>
+
+        <TouchableOpacity onPress={handleLogin} >
+            <Text style={{color:"#0466C8",fontSize:17}}>Log In</Text>
         </TouchableOpacity>
+        </View>
+
+
       </View>
+
     </View>
   );
 };
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//   },
-//   backButton: {
-//     height: 50,
-//     width: 50,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     alignSelf: 'flex-start',
-//     backgroundColor: 'white',
-//   },
-//   title: {
-//     color: 'black',
-//     fontSize: 40,
-//     fontWeight: 'bold',
-//     marginTop: 50,
-//     marginBottom: 20,
-//     textAlign: 'center',
-//   },
-//   subtitle: {
-//     fontSize: 16,
-//     color: 'black',
-//     textAlign: 'center',
-//   },
-//   email: {
-//     fontWeight: '900',
-//   },
-//   otpContainer: {
-//     width: '70%',
-//     marginTop: 50,
-//     maxWidth: 290,
-//     alignItems: 'center',
-//   },
-//   resendContainer: {
-//     flexDirection: 'row',
-//     width: '80%',
-//     justifyContent: 'space-around',
-//     marginTop: 50,
-//   },
-// });
 
-export default OtpUI;
+export default ForgotPasswordUI;

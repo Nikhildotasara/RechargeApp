@@ -4,6 +4,9 @@ import LogoSvg from "../../assests/logo.svg"
 import CustomInput from '../../elements/CustomInput';
 import CustomCTA from '../../elements/CustomCTA';
 
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+
+
 
 // importing theme provider
 import { useTheme } from '../../utils/themeProvider.tsx';
@@ -11,7 +14,7 @@ import { useTheme } from '../../utils/themeProvider.tsx';
 
 function LoginUI(props:any) {
 
-    const {onPress,onEmailChange,onPasswordChange,handleForgotPassword,handleCreateAccount,handleSignIn}=props;
+    const {onPress,onEmailChange,onPasswordChange,handleForgotPassword,handleCreateAccount,handleSignIn,}=props;
 
 
     const {theme,toogleTheme}=useTheme();
@@ -20,7 +23,7 @@ function LoginUI(props:any) {
     const getStyles=(theme)=>StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: theme === 'dark' ? 'black' : 'white',
+        backgroundColor: theme === 'dark' ? 'black' : '#F7F7F7',
       },
       scrollContainer: {
         flexGrow: 1,
@@ -60,16 +63,17 @@ function LoginUI(props:any) {
       },
     
       inputContainerHeading:{
-        fontSize:20,
+        fontSize:18,
         alignSelf:"flex-start",
-        paddingLeft:10,
+        // paddingLeft:,
+        paddingBottom:10,
         color: theme === 'dark' ? 'white' : 'black',
 
       },
       rememberForgotContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '95%',
+        width: '98%',
         marginTop: 10,
         
       },
@@ -77,10 +81,12 @@ function LoginUI(props:any) {
       rememberMeText:{
         color:theme=="dark"?"white":"black",
         
+        
       },
 
       forgotText: {
-        color: 'blue',
+        color: '#0466C8',
+        paddingRight:12
 
       },
       ctaContainer: {
@@ -100,7 +106,7 @@ function LoginUI(props:any) {
         // backgroundColor:"red"
       },
       createAccountText: {
-        color: 'blue',
+        color: '#0466C8',
         marginLeft: 5,
       },
 
@@ -123,19 +129,53 @@ function LoginUI(props:any) {
           <Text style={styles.welcomeText}>Hi, Welcome 👋</Text>
 
           <View style={styles.inputContainer}>
+
+            <View style={{width:"100%"}}>
             <Text style={styles.inputContainerHeading}>Email Address</Text>
-            <CustomInput theme={theme} onChange={onEmailChange} />
+            <CustomInput placeHolder="Enter your email" theme={theme} onChange={onEmailChange} />
+            </View>
+
+            <View style={{width:"100%"}}>
             <Text style={styles.inputContainerHeading}>Password</Text>
-            <CustomInput theme={theme} onChange={onPasswordChange} />
+            <CustomInput placeHolder="Enter your password" secure={true} theme={theme} onChange={onPasswordChange} />
+            </View>
+
 
             <View style={styles.rememberForgotContainer}>
+
+
+              <View style={{flexDirection:"row",alignItems:"center"}}>
+
+            <BouncyCheckbox
+
+            style={{paddingRight:10}}
+  size={25}
+  fillColor="black"
+  unFillColor="#FFFFFF"
+  textStyle={{
+    color: "black", 
+    fontWeight: "bold" 
+  }}
+  disableText
+  iconStyle={{ borderColor: "black" }}
+  innerIconStyle={{ borderWidth: 2 }}
+  onPress={(isChecked: boolean) => {
+    console.log(isChecked);
+  }}
+/>
+
+
+
               <Text style={styles.rememberMeText}>Remember Me</Text>
+              </View>
+
+
               <TouchableOpacity onPress={handleForgotPassword}>
-                <Text style={styles.forgotText}>Forgot Password</Text>
+                <Text style={styles.forgotText}>Forgot Password?</Text>
               </TouchableOpacity>
             </View>
 
-          <CustomCTA  onPress={handleSignIn} customText="Sign In" />
+          <CustomCTA  onPress={handleSignIn} customText="Log In" />
 
           </View>
         </View>
@@ -153,83 +193,6 @@ function LoginUI(props:any) {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: theme === 'dark' ? 'black' : 'white',
-//   },
-//   scrollContainer: {
-//     flexGrow: 1,
-//     alignItems: 'center',
-//     justifyContent: 'space-around',
-//   },
-//   logoContainer: {
-//     width: '99%',
-//     alignItems: 'center',
-//     minHeight: 100,
-//     maxHeight: 110,
-//     // borderWidth:1
-//     // borderWidth:1
-//   },
-//   formContainer: {
-//     width: '98%',
-//     minHeight: 450,
-//     paddingBottom: 20,
-//     // borderWidth:1,
-//     justifyContent:"space-around",
-//     // borderWidth:1
-//   },
-//   welcomeText: {
-//     fontSize: 35,
-//     color: 'black',
-//     fontWeight: '800',
-//     marginBottom: 20,
-//   },
-//   inputContainer: {
-//     paddingLeft: 15,
-//     justifyContent: 'space-between',
-//     width: '100%',
-//     flex:1,
-//     alignItems:"center",
-//     // backgroundColor:"red"
-//   },
 
-//   inputContainerHeading:{
-//     fontSize:20,
-//     alignSelf:"flex-start",
-//     paddingLeft:10,
-//     color:"black"
-//   },
-//   rememberForgotContainer: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     width: '95%',
-//     marginTop: 10,
-    
-//   },
-//   forgotText: {
-//     color: 'blue',
-//   },
-//   ctaContainer: {
-//     width: '100%',
-//     alignItems: 'center',
-//     marginTop: 10,
-//     justifyContent: 'center',
-//     minHeight: 200,
-//     maxWidth:500,
-//     // borderWidth:1,
-//     // backgroundColor:"yellow"
-//   },
-//   createAccountContainer: {
-//     // flexDirection: 'row',
-//     alignItems:"center",
-//     marginTop: 20,
-//     // backgroundColor:"red"
-//   },
-//   createAccountText: {
-//     color: 'blue',
-//     marginLeft: 5,
-//   },
-// });
 
 export default LoginUI;

@@ -133,7 +133,7 @@ function LoginUI(props) {
 
             <View style={styles.buttonContainer}>
                 <CustomCTA onPress={handleSignIn} customText="Sign In" />
-                <CustomCTA onPress={handleCreateAccount} customText="Create Account" />
+                <CustomCTA onPress={handleCreateAccount} color="white" customText="Create Account" />
                 <Button title="Toggle Theme" onPress={toggleTheme} />
             </View>
         </View>

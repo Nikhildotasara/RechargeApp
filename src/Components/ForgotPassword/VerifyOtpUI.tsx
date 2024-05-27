@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BackButtonSvg from "../../assests/backButton.svg";
-import OtpInput from './OtpInput.tsx';
+// import OtpInput from './OtpInput.tsx';
+
+import OtpInput from '../OTP/OtpInput.tsx';
 import CustomCTA from '../../elements/CustomCTA';
 
 
 import { useTheme } from '../../utils/themeProvider.tsx';
 
-interface OtpUIProps {
+interface VerifyOtpUIProps {
   handleBack: () => void;
   handleVerify: () => void;
   handleOtpChange: (otp: string) => void;
+
 }
 
-const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange }) => {
+const VerifyOtpUI: React.FC<VerifyOtpUIProps> = ({ handleBack, handleVerify, handleOtpChange }) => {
 
   const {theme,toogleTheme}=useTheme();
 
@@ -105,47 +108,6 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
   );
 };
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//   },
-//   backButton: {
-//     height: 50,
-//     width: 50,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     alignSelf: 'flex-start',
-//     backgroundColor: 'white',
-//   },
-//   title: {
-//     color: 'black',
-//     fontSize: 40,
-//     fontWeight: 'bold',
-//     marginTop: 50,
-//     marginBottom: 20,
-//     textAlign: 'center',
-//   },
-//   subtitle: {
-//     fontSize: 16,
-//     color: 'black',
-//     textAlign: 'center',
-//   },
-//   email: {
-//     fontWeight: '900',
-//   },
-//   otpContainer: {
-//     width: '70%',
-//     marginTop: 50,
-//     maxWidth: 290,
-//     alignItems: 'center',
-//   },
-//   resendContainer: {
-//     flexDirection: 'row',
-//     width: '80%',
-//     justifyContent: 'space-around',
-//     marginTop: 50,
-//   },
-// });
 
-export default OtpUI;
+
+export default VerifyOtpUI;

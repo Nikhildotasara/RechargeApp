@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, View, StyleSheet, Switch } from 'react-native';
+
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+
+
 import LogoSvg from "../../assests/logo.svg"; 
 import CustomInput from '../../elements/CustomInput';
 import CustomCTA from '../../elements/CustomCTA';
@@ -28,8 +32,8 @@ function CreateAccountUI(props:any) {
       logoContainer: {
         width: '99%',
         alignItems: 'center',
-        minHeight: 80,
-        maxHeight: 120,
+        minHeight: 70,
+        maxHeight: 110,
       },
       formContainer: {
         width: '98%',
@@ -43,7 +47,8 @@ function CreateAccountUI(props:any) {
         color:theme=="dark"?"white":"black"
       },
       inputHeading:{
-        fontSize:20,
+        fontSize:14,
+        paddingBottom:7,
         fontWeight:"400",
         color:theme=="dark"?"white":"black"
       }
@@ -62,7 +67,7 @@ function CreateAccountUI(props:any) {
       },
       termsText: {
         marginLeft: 0,
-        color:theme=="dark"?"white":"black"
+        color:theme=="dark"?"white":"#0466C8"
       },
       ctaContainer: {
         width: '100%',
@@ -71,11 +76,11 @@ function CreateAccountUI(props:any) {
         paddingVertical: 20, // Adjust padding to ensure it's visible on all devices
       },
       loginContainer: {
-        flexDirection: 'row',
         marginTop: 20,
+        alignItems:"center"
       },
       loginText: {
-        color: 'blue',
+        color: '#0466C8',
         marginLeft: 5,
       },
       alreadyAccountText:{
@@ -91,7 +96,7 @@ function CreateAccountUI(props:any) {
 
   return (
     <KeyboardAvoidingView style={[styles.container]} behavior="padding">
-      <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
         <View style={styles.logoContainer}>
           <LogoSvg width="100%" height="90%" />
         </View>
@@ -102,31 +107,44 @@ function CreateAccountUI(props:any) {
           <View style={styles.inputContainer}>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Name</Text>
-              <CustomInput onChange={onNameChange} />
+              <CustomInput placeHolder="Enter your name"  onChange={onNameChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Email Address</Text>
-              <CustomInput onChange={onEmailChange} />
+              <CustomInput placeHolder="Enter your email" onChange={onEmailChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Mobile Number</Text>
-              <CustomInput onChange={onMobileNumberChange} />
+              <CustomInput placeHolder="Enter number" onChange={onMobileNumberChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Create Password</Text>
-              <CustomInput onChange={onCreatePasswordChange} secureTextEntry={true} />
+              <CustomInput placeHolder="Enter password" onChange={onCreatePasswordChange} secureTextEntry={true} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Confirm Password</Text>
-              <CustomInput onChange={onConfirmPasswordChange} secureTextEntry={true} />
+              <CustomInput placeHolder="Enter password" onChange={onConfirmPasswordChange} secureTextEntry={true} />
             </View>
 
             <View style={styles.termsContainer}>
-              <Switch
-              value={isTermsAccepted}
-                onValueChange={onTermsChange}
-              />
-              <Text style={styles.termsText}>I accept terms and policy</Text>
+            <BouncyCheckbox
+
+style={{paddingRight:10}}
+size={25}
+fillColor="black"
+unFillColor="#FFFFFF"
+textStyle={{
+color: "black", 
+fontWeight: "bold" 
+}}
+disableText
+iconStyle={{ borderColor: "black" }}
+innerIconStyle={{ borderWidth: 2 }}
+onPress={(isChecked: boolean) => {
+console.log(isChecked);
+}}
+/>
+              <Text style={styles.termsText}>I accept the  terms and privacy policy</Text>
             </View>
           </View>
         </View>

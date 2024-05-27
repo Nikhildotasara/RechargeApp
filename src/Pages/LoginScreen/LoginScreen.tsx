@@ -23,10 +23,13 @@ function LoginScreen(props:any) {
     const handleSignIn=()=>{
         console.log(email)
         console.log(password);
+
+        navigation.navigate("HomeScreen")
     }
 
     const handleForgotPassword=()=>{
         console.log("Handle password clicked");
+        navigation.navigate("ForgotPasswordScreen")
 
     }
 
