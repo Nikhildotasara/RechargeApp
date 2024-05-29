@@ -1,4 +1,13 @@
+![Image 1](https://github.com/Nikhildotasara/RechargeApp/blob/main/src/Screenshot%20from%202024-05-30%2000-19-56.png)
+![Image 2](https://github.com/Nikhildotasara/RechargeApp/blob/main/src/Screenshot%20from%202024-05-30%2000-20-02.png)
+
+![Image 3](https://github.com/Nikhildotasara/RechargeApp/blob/main/src/Screenshot%20from%202024-05-30%2000-20-07.png)
+
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+
+
 
 # Getting Started
 
