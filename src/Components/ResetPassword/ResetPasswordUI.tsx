@@ -19,11 +19,13 @@ import Back from "../../assests/backButton.svg";
 const ResetPasswordUI = (props) => {
 
 
-  const navigation=useNavigation()
+  const navigation=useNavigation();
+
+  const {onPasswordChange,onConfirmPasswordChange}=props;
 
     const {handleResetPassword}=props;
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  // const [newPassword, setNewPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const toggleSecureTextEntry = () => {
@@ -135,7 +137,8 @@ const ResetPasswordUI = (props) => {
             placeholderTextColor={theme==='dark'?"white":"black"}
             placeholder="Enter password"
             secureTextEntry={secureTextEntry}
-            onChangeText={setNewPassword}
+            onChangeText={(text)=>{onPasswordChange(text)}}
+
           />
           <TouchableOpacity onPress={toggleSecureTextEntry} style={styles.icon}>
            <Eye/>
@@ -152,7 +155,8 @@ const ResetPasswordUI = (props) => {
             placeholderTextColor={theme==='dark'?"white":"black"}
             placeholder="Confirm new password"
             secureTextEntry={secureTextEntry}
-            onChangeText={setConfirmPassword}
+            // onChangeText={setConfirmPassword}
+            onChangeText={(text)=>{onConfirmPasswordChange(text)}}
           />
           <TouchableOpacity onPress={toggleSecureTextEntry} style={styles.icon}>
            <Eye/>

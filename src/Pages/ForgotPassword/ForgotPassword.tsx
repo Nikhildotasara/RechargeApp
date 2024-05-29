@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
+import { forgotPassword } from '../../apiService.js';
+
 import ForgotPasswordUI from '../../Components/ForgotPassword/ForgotPasswordUI.tsx'
 
 function ForgotPassword(props:any) {
@@ -18,6 +20,10 @@ function ForgotPassword(props:any) {
     }
 
     const handleSendCode=()=>{
+
+        const response=forgotPassword(email);
+        
+
         navigation.navigate("VerifyOtpScreen")
     }
 

@@ -21,7 +21,7 @@ function CreateAccountUI(props:any) {
     const getStyles=(theme)=>StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor:theme=="dark"?"#011F3C":"white",
+        backgroundColor:theme=="dark"?"#F7F7F7":"white",
       },
       scrollContainer: {
         flexGrow: 1,
@@ -40,7 +40,7 @@ function CreateAccountUI(props:any) {
         paddingBottom: 20,
       },
       welcomeText: {
-        fontSize: 35,
+        fontSize: 28,
         fontWeight: '800',
         marginBottom: 20,
         paddingLeft:16,
@@ -48,6 +48,12 @@ function CreateAccountUI(props:any) {
       },
       inputHeading:{
         fontSize:14,
+        paddingBottom:7,
+        fontWeight:"400",
+        color:theme=="dark"?"white":"black"
+      },
+      passwordCondition:{
+        fontSize:12,
         paddingBottom:7,
         fontWeight:"400",
         color:theme=="dark"?"white":"black"
@@ -102,7 +108,7 @@ function CreateAccountUI(props:any) {
         </View>
 
         <View style={styles.formContainer}>
-          <Text style={styles.welcomeText}>Hi, Welcome 👋</Text>
+          <Text style={styles.welcomeText}>Create account</Text>
 
           <View style={styles.inputContainer}>
             <View style={styles.inputWrapper}>
@@ -115,15 +121,18 @@ function CreateAccountUI(props:any) {
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Mobile Number</Text>
-              <CustomInput theme={theme}  placeHolder="Enter number" onChange={onMobileNumberChange} />
+              <CustomInput numeric={true} theme={theme}  placeHolder="Enter number" onChange={onMobileNumberChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Create Password</Text>
-              <CustomInput theme={theme}  placeHolder="Enter password" onChange={onCreatePasswordChange} secureTextEntry={true} />
+              <CustomInput secure={true} theme={theme}  placeHolder="Enter password" onChange={onCreatePasswordChange} secureTextEntry={true} />
+              <Text style={styles.passwordCondition}>must be 8 characters</Text>
+
+
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Confirm Password</Text>
-              <CustomInput theme={theme}  placeHolder="Enter password" onChange={onConfirmPasswordChange} secureTextEntry={true} />
+              <CustomInput secure={true} theme={theme}  placeHolder="Enter password" onChange={onConfirmPasswordChange} secureTextEntry={true} />
             </View>
 
             <View style={styles.termsContainer}>

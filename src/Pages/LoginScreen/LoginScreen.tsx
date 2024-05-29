@@ -1,6 +1,11 @@
 // importing libraries
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { Text, ToastAndroid, View } from 'react-native'
+
+
+// import { useUserDetails } from '../../utils/userDetailsProvider.tsx';
+
+import { login } from '../../apiService.js';
 
 // importing UI
 import LoginUI from '../../Components/LoginScreen/LoginUI.tsx'
@@ -12,6 +17,8 @@ function LoginScreen(props:any) {
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
 
+    
+
 
     const onEmailChange=(email:any)=>{
         setEmail(email)
@@ -20,11 +27,27 @@ function LoginScreen(props:any) {
         setPassword(password)
     }
 
-    const handleSignIn=()=>{
+    const handleSignIn=async()=>{
         console.log(email)
         console.log(password);
+        try {
+        const verifyDetails={
+          email:email,
+          password:password
+        }
+        const response=await login(verifyDetails);
+        console.log("Login page check",response)
 
-        navigation.navigate("HomeScreen")
+        if(response.success ){
+          navigation.navigate("HomeScreen")     
+        }
+        else{
+          ToastAndroid.show(response.message,ToastAndroid.SHORT)
+        }
+
+        } catch (error) {
+          console.log(error)
+        }    
     }
 
     const handleForgotPassword=()=>{

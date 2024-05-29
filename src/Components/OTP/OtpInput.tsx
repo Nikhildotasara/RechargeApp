@@ -9,7 +9,7 @@ interface OtpInputProps {
 
 const OtpInput: React.FC<OtpInputProps> = ({ onOtpChange }) => {
   const inputRefs = useRef<Array<TextInput | null>>([]);
-  const [otpArray, setOtpArray] = useState<string[]>(Array(4).fill(''));
+  const [otpArray, setOtpArray] = useState<string[]>(Array(6).fill(''));
 
   const {theme,toogleTheme}=useTheme();
 
@@ -55,7 +55,7 @@ const OtpInput: React.FC<OtpInputProps> = ({ onOtpChange }) => {
 
   return (
     <View style={styles.container}>
-      {Array(4).fill(null).map((_, index) => (
+      {Array(6).fill(null).map((_, index) => (
         <TextInput
           key={index}
           ref={(ref) => (inputRefs.current[index] = ref)}

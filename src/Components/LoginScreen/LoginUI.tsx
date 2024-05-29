@@ -23,7 +23,8 @@ function LoginUI(props:any) {
     const getStyles=(theme)=>StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor:theme=="dark"?"#011F3C":"white",
+        // backgroundColor:theme=="dark"?"#011F3C":"white",
+        backgroundColor:"#F7F7F7"
       },
       scrollContainer: {
         flexGrow: 1,
@@ -62,9 +63,9 @@ function LoginUI(props:any) {
       },
     
       inputContainerHeading:{
-        fontSize:18,
+        fontSize:14,
+        fontWeight:"400",
         alignSelf:"flex-start",
-        // paddingLeft:,
         paddingBottom:10,
         color: theme === 'dark' ? 'white' : 'black',
 
@@ -78,7 +79,9 @@ function LoginUI(props:any) {
       },
 
       rememberMeText:{
-        color:theme=="dark"?"white":"black",
+        color:theme=="dark"?"white":"#000000",
+        fontSize:14,
+        fontWeight:"400"
         
         
       },

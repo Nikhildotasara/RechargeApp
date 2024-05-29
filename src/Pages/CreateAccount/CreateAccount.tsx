@@ -4,6 +4,10 @@ import { Alert, View ,ToastAndroid
 
 import { signUp } from '../../apiService.js';
 
+import { sendOtp } from '../../apiService.js';
+
+import { useUserDetails } from '../../utils/userDetailsProvider.tsx';
+
 // importing UI
 import CreateAccountUI from '../../Components/CreateAccount/CreateAccountUI.tsx';
 
@@ -21,22 +25,26 @@ const CreateAccount: React.FC<CreateAccountProps> = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
 
-  // useEffect(()=>{
-  //   ToastAndroid.show("dsfasdf",ToastAndroid.SHORT)
-  // })
+
+const {changeName,changeEmail,changeMobileNumber,changePassword}=useUserDetails();
+
+// console.log(sendOtp)
 
 
 
   const onNameChange = (name: string) => {
     setName(name);
+    changeName(name)
   };
 
   const onEmailChange = (email: string) => {
     setEmail(email);
+    changeEmail(email)
   };
 
   const onMobileNumberChange = (mobileNumber: string) => {
     setMobileNumber(mobileNumber);
+    changeMobileNumber(mobileNumber)
   };
 
   const onCreatePasswordChange = (password: string) => {
@@ -56,24 +64,21 @@ const CreateAccount: React.FC<CreateAccountProps> = ({ navigation }) => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
-  const handleContinue = async() => {
-    checkPassword(createPassword,confirmPassword)
+  const handleContinue = async () => {
 
     if(checkPassword(createPassword,confirmPassword)){
+      // changePassword(createPassword)
       try {
-        const userData={UserName:name,Email:email,Pass:createPassword,MobileNo:mobileNumber};
-        const response=await signUp(userData);
-        console.log(response)
+        const userData={email:email};
+        const response= await sendOtp(userData);
         
         if(response.success){
           navigation.navigate('OtpScreen');
         }
 
-        Alert.alert("Success","SignUp success");
-    
       } catch (error) {
-        console.log("Error in signup")
-        Alert.alert("Error","Error in signup")
+        console.log(error)
+        // Alert.alert("Error","Error in signup")
       }
     }
     else{
@@ -86,7 +91,7 @@ const CreateAccount: React.FC<CreateAccountProps> = ({ navigation }) => {
   const checkPassword=(createPassword,confirmPassword)=>{
     if(createPassword===confirmPassword && createPassword.length>=0 && confirmPassword.length>=0){
 
-      ToastAndroid.show("Passwords did not match",ToastAndroid.SHORT)
+
 
       return true;
     }

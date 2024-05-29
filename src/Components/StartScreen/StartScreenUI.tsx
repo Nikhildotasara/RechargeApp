@@ -26,11 +26,13 @@ const getStyles = (theme) => StyleSheet.create({
         height: '18%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        fontFamily:"Poppins"
     },
     titleText: {
         fontSize: 30,
         fontWeight: '700',
-        color: theme === 'dark' ? 'white' : 'black',
+        lineHeight:39,
+        color: theme === 'dark' ? 'white' : '#000000',
     },
     subtitleText: {
         fontSize: 17,
