@@ -38,7 +38,7 @@ const ForgotPasswordUI: React.FC<ForgotPasswordUI> = ({ handleBack, handleVerify
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:theme=="dark"?"black":"white"
+      backgroundColor:theme=="dark"?"#011F3C":"white",
     },
     backButton: {
         paddingLeft:20,
@@ -80,6 +80,15 @@ const ForgotPasswordUI: React.FC<ForgotPasswordUI> = ({ handleBack, handleVerify
       marginTop: 50,
       alignItems:"center"
     },
+    rememberPassowrd:{
+      
+      color: theme=="dark"?"white":"black",
+    }
+    ,
+    emailText:{
+      marginBottom:10,
+      color: theme=="dark"?"white":"black",
+    }
   })
 
   const styles=getStyles(theme);
@@ -100,9 +109,9 @@ const ForgotPasswordUI: React.FC<ForgotPasswordUI> = ({ handleBack, handleVerify
 
         <View style={{width:"100%"}}>
 
-        <Text style={{color:"black" ,marginBottom:10}}>Email address</Text>
+        <Text style={styles.emailText}>Email address</Text>
 
-        <CustomInput onChange={onEmailChange} placeHolder="Enter your email address"/>
+        <CustomInput theme={theme} onChange={onEmailChange} placeHolder="Enter your email address"/>
         </View>
 
 
@@ -110,7 +119,7 @@ const ForgotPasswordUI: React.FC<ForgotPasswordUI> = ({ handleBack, handleVerify
 
         <View style={{alignItems:"center"}}>
 
-        <Text style={{color:"black"}}>Remember Password?</Text>
+        <Text style={styles.rememberPassowrd}>Remember Password?</Text>
 
         <TouchableOpacity onPress={handleLogin} >
             <Text style={{color:"#0466C8",fontSize:17}}>Log In</Text>

@@ -7,6 +7,9 @@ import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
 import { useNavigation } from '@react-navigation/native';
 
+import { useTheme } from '../../utils/themeProvider';
+
+import Forward from "../../assests/forward.svg"
 
 const RechargePlanUI = (props:any) => {
   const [selectedCategory, setSelectedCategory] = useState('Popular');
@@ -21,6 +24,8 @@ const RechargePlanUI = (props:any) => {
 
 
   const navigation=useNavigation();
+
+  const {theme}=useTheme();
 
   useEffect(() => {
     fetchPlans();
@@ -93,9 +98,155 @@ const RechargePlanUI = (props:any) => {
 
   const handleRechargePlan=()=>{
     console.log("Recharge number")
-    navigation.navigate("RechargeBillScreen")
-
+    navigation.navigate("RechargeBillScreen");
   }
+
+
+
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      // backgroundColor: '#F5F5F5',
+      backgroundColor:theme==="dark"?"#011F3c":"white"
+    },
+    headerContainer: {
+      backgroundColor: '#007AFF',
+    },
+    headerText: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    profileContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: 16,
+      // backgroundColor: '#fff',
+      backgroundColor:theme==="dark"?"#011F3c":"white"
+    },
+    avatar: {
+      marginRight: 16,
+    },
+    numberContainer: {
+      flex: 1,
+    },
+    myNumberText: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color:theme==="dark"?"white":"black"
+    },
+    numberText: {
+      fontSize: 16,
+      // color: 'gray',
+      color:theme==="dark"?"white":"black"
+    },
+    selectorContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      padding: 16,
+      // backgroundColor: '#fff',
+      backgroundColor:theme==="dark"?"#011F3c":"white"
+    },
+    dropdown: {
+      flex: 1,
+      marginHorizontal: 4,
+      borderWidth: 1,
+      borderColor: '#007AFF',
+      borderRadius: 4,
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+    },
+    dropdownText: {
+      fontSize: 16,
+      color: '#007AFF',
+    },
+    dropdownDropdown: {
+      width: '45%',
+      // backgroundColor:"red"
+    },
+    searchInput: {
+      padding: 10,
+      margin: 16,
+      borderRadius: 5,
+      // backgroundColor: '#fff',
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      borderColor: '#ccc',
+      borderWidth: 1,
+      color: theme==="dark"?"white":"black",
+    },
+    tabContainer: {
+      paddingVertical: 10,
+      paddingHorizontal: 16,
+      backgroundColor: '#fff',
+    },
+    tabButton: {
+      marginRight: 10,
+      paddingVertical: 5,
+      paddingHorizontal: 15,
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: '#007AFF',
+      width: 120,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    tabButtonActive: {
+      backgroundColor: '#007AFF',
+    },
+    tabText: {
+      fontSize: 16,
+      color: '#007AFF',
+    },
+    tabTextActive: {
+      color: '#fff',
+    },
+    plansContainer: {
+      flex: 1,
+      paddingHorizontal: 16,
+      paddingTop: 0,  // Ensure no extra padding at the top
+    },
+    card: {
+      borderRadius: 10,
+      marginVertical: 10,
+      backgroundColor:theme==="dark"?"#252E3E":"white"
+
+    },
+    planContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor:theme==="dark"?"#252E3E":"white"
+      
+    },
+    priceText: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color:theme==="dark"?"white":"black"
+
+    },
+    planDetails: {
+      flex: 1,
+      marginLeft: 16,
+      color:theme==="dark"?"white":"black"
+    },
+    planText: {
+      fontSize: 16,
+      // color: '#000',
+      color:theme==="dark"?"white":"black"
+    },
+    subText: {
+      fontSize: 14,
+      // color: 'gray',
+      color:theme==="dark"?"white":"black"
+    },
+  })
+
+  const styles=getStyles(theme);
+
+
+
   
 
   const renderPlans = () => {
@@ -112,7 +263,7 @@ const RechargePlanUI = (props:any) => {
             <Text style={styles.planText}>{`Validity: ${plan.validity}`}</Text>
             <Text style={styles.planText}>{`Calls: ${plan.calls}`}</Text>
           </View>
-          <Icon name="chevron-right" type="material" />
+         <Forward/>
         </TouchableOpacity>
         <Text style={styles.subText}>{plan.description}</Text>
       </Card>
@@ -155,6 +306,7 @@ const RechargePlanUI = (props:any) => {
     <TextInput
       placeholder="Search for plan or enter amount"
       style={styles.searchInput}
+      placeholderTextColor={theme=="dark"?"white":"black"}
     />
   
     <View style={{ flexDirection: 'row', maxHeight: 100,  }}>
@@ -188,129 +340,129 @@ const RechargePlanUI = (props:any) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-  },
-  headerContainer: {
-    backgroundColor: '#007AFF',
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  profileContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  avatar: {
-    marginRight: 16,
-  },
-  numberContainer: {
-    flex: 1,
-  },
-  myNumberText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  numberText: {
-    fontSize: 16,
-    color: 'gray',
-  },
-  selectorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 16,
-    backgroundColor: '#fff',
-  },
-  dropdown: {
-    flex: 1,
-    marginHorizontal: 4,
-    borderWidth: 1,
-    borderColor: '#007AFF',
-    borderRadius: 4,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-  },
-  dropdownText: {
-    fontSize: 16,
-    color: '#007AFF',
-  },
-  dropdownDropdown: {
-    width: '45%',
-  },
-  searchInput: {
-    padding: 10,
-    margin: 16,
-    borderRadius: 5,
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
-    borderWidth: 1,
-  },
-  tabContainer: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: '#fff',
-  },
-  tabButton: {
-    marginRight: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#007AFF',
-    width: 120,
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tabButtonActive: {
-    backgroundColor: '#007AFF',
-  },
-  tabText: {
-    fontSize: 16,
-    color: '#007AFF',
-  },
-  tabTextActive: {
-    color: '#fff',
-  },
-  plansContainer: {
-    flex: 1,
-    paddingHorizontal: 16,
-    paddingTop: 0,  // Ensure no extra padding at the top
-  },
-  card: {
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-  planContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#F5F5F5',
+//   },
+//   headerContainer: {
+//     backgroundColor: '#007AFF',
+//   },
+//   headerText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+//   profileContainer: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     padding: 16,
+//     backgroundColor: '#fff',
+//   },
+//   avatar: {
+//     marginRight: 16,
+//   },
+//   numberContainer: {
+//     flex: 1,
+//   },
+//   myNumberText: {
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//   },
+//   numberText: {
+//     fontSize: 16,
+//     color: 'gray',
+//   },
+//   selectorContainer: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//     padding: 16,
+//     backgroundColor: '#fff',
+//   },
+//   dropdown: {
+//     flex: 1,
+//     marginHorizontal: 4,
+//     borderWidth: 1,
+//     borderColor: '#007AFF',
+//     borderRadius: 4,
+//     paddingHorizontal: 10,
+//     paddingVertical: 12,
+//   },
+//   dropdownText: {
+//     fontSize: 16,
+//     color: '#007AFF',
+//   },
+//   dropdownDropdown: {
+//     width: '45%',
+//   },
+//   searchInput: {
+//     padding: 10,
+//     margin: 16,
+//     borderRadius: 5,
+//     backgroundColor: '#fff',
+//     borderColor: '#ccc',
+//     borderWidth: 1,
+//   },
+//   tabContainer: {
+//     paddingVertical: 10,
+//     paddingHorizontal: 16,
+//     backgroundColor: '#fff',
+//   },
+//   tabButton: {
+//     marginRight: 10,
+//     paddingVertical: 5,
+//     paddingHorizontal: 15,
+//     borderRadius: 20,
+//     borderWidth: 1,
+//     borderColor: '#007AFF',
+//     width: 120,
+//     height: 40,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   tabButtonActive: {
+//     backgroundColor: '#007AFF',
+//   },
+//   tabText: {
+//     fontSize: 16,
+//     color: '#007AFF',
+//   },
+//   tabTextActive: {
+//     color: '#fff',
+//   },
+//   plansContainer: {
+//     flex: 1,
+//     paddingHorizontal: 16,
+//     paddingTop: 0,  // Ensure no extra padding at the top
+//   },
+//   card: {
+//     borderRadius: 10,
+//     marginVertical: 10,
+//   },
+//   planContainer: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
     
-  },
-  priceText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  planDetails: {
-    flex: 1,
-    marginLeft: 16,
-  },
-  planText: {
-    fontSize: 16,
-    color: '#000',
-  },
-  subText: {
-    fontSize: 14,
-    color: 'gray',
-  },
-});
+//   },
+//   priceText: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//     color: '#000',
+//   },
+//   planDetails: {
+//     flex: 1,
+//     marginLeft: 16,
+//   },
+//   planText: {
+//     fontSize: 16,
+//     color: '#000',
+//   },
+//   subText: {
+//     fontSize: 14,
+//     color: 'gray',
+//   },
+// });
 
 export default RechargePlanUI;
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
+import { useTheme } from '../utils/themeProvider';
+
 import MobileRecharge from "../assests/mobileRecharge.svg";
 import Cards from "../assests/cards.svg";
 import Dth from "../assests/dth.svg";
@@ -21,13 +23,63 @@ import LoanRepayment from "../assests/loanRepayment.svg"
 import MunicipalTax from "../assests/municipalTax.svg";
 
 const buttons = [
-  { icon: <Insurance width={40} height={40} />, label: "Insurance", accessibilityLabel: "Insurance" },
-  { icon: <LoanRepayment width={40} height={40} />, label: "Loan \n Repayment", accessibilityLabel: "Loan Repayment" },
-  { icon: <MunicipalTax width={40} height={40} />, label: "Municipal Tax", accessibilityLabel: "Municipal Tax" },
+  { icon: <Insurance width={30} height={30} />, label: "Insurance", accessibilityLabel: "Insurance" },
+  { icon: <LoanRepayment width={30} height={30} />, label: "Loan \n Repayment", accessibilityLabel: "Loan Repayment" },
+  { icon: <MunicipalTax width={30} height={30} />, label: "Municipal Tax", accessibilityLabel: "Municipal Tax" },
   
 ];
 
 function FinancialServices() {
+
+  const {theme}=useTheme();
+
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      width: "95%",
+    //   borderWidth: 1,
+      borderRadius: 18,
+      justifyContent: "space-around",
+      flexDirection: "column",
+      padding: 10,
+      marginTop:15,
+    shadowOpacity: 0.8,
+    shadowOffset: { width: 3, height: 3 },
+    shadowRadius: 5,
+    elevation: 5,
+    backgroundColor:theme==="dark"?"#252E3E" :"white",
+    },
+    categoryName: {
+      fontSize: 16,
+      color:theme==="dark"?"white":"black",
+      fontWeight: "800",
+      marginBottom: 10,
+      paddingLeft: 13,
+      paddingTop:4
+    },
+    iconContainer: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      marginVertical: 5,
+    },
+    iconButton: {
+      flex: 1,
+      justifyContent: "space-between",
+      alignItems: "center",
+      minHeight: 65,
+      padding: 5,
+      height:70
+    },
+    iconText: {
+      textAlign: "center",
+      fontSize: 12,
+      color:theme==="dark"?"white":"black",
+    }
+  })
+
+  const styles=getStyles(theme);
+
     const renderRows = () => {
       const rows = [];
       for (let i = 0; i < buttons.length; i += 4) {
@@ -62,47 +114,47 @@ function FinancialServices() {
     );
   }
   
-  const styles = StyleSheet.create({
-    container: {
-      width: "95%",
-    //   borderWidth: 1,
-      borderRadius: 18,
-      justifyContent: "space-around",
-      flexDirection: "column",
-      padding: 10,
-      marginTop:15,
-      shadowOpacity: 0.8,
-    shadowOffset: { width: 3, height: 3 },
-    shadowRadius: 5,
-    elevation: 5,
-    backgroundColor: '#fff',
-    },
-    categoryName: {
-      fontSize: 20,
-      color: "black",
-      fontWeight: "800",
-      marginBottom: 10,
-      paddingLeft: 10,
-    },
-    iconContainer: {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      marginVertical: 5,
-    },
-    iconButton: {
-      flex: 1,
-      justifyContent: "space-between",
-      alignItems: "center",
-      minHeight: 65,
-      padding: 5,
-      height:70
-    },
-    iconText: {
-      textAlign: "center",
-      fontSize: 12,
-      color:"black"
-    },
-  });
+  // const styles = StyleSheet.create({
+  //   container: {
+  //     width: "95%",
+  //   //   borderWidth: 1,
+  //     borderRadius: 18,
+  //     justifyContent: "space-around",
+  //     flexDirection: "column",
+  //     padding: 10,
+  //     marginTop:15,
+  //     shadowOpacity: 0.8,
+  //   shadowOffset: { width: 3, height: 3 },
+  //   shadowRadius: 5,
+  //   elevation: 5,
+  //   backgroundColor: '#fff',
+  //   },
+  //   categoryName: {
+  //     fontSize: 20,
+  //     color: "black",
+  //     fontWeight: "800",
+  //     marginBottom: 10,
+  //     paddingLeft: 10,
+  //   },
+  //   iconContainer: {
+  //     flexDirection: "row",
+  //     justifyContent: "flex-start",
+  //     alignItems: "center",
+  //     marginVertical: 5,
+  //   },
+  //   iconButton: {
+  //     flex: 1,
+  //     justifyContent: "space-between",
+  //     alignItems: "center",
+  //     minHeight: 65,
+  //     padding: 5,
+  //     height:70
+  //   },
+  //   iconText: {
+  //     textAlign: "center",
+  //     fontSize: 12,
+  //     color:"black"
+  //   },
+  // });
   
   export default FinancialServices;

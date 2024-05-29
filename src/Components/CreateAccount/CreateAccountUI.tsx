@@ -21,7 +21,7 @@ function CreateAccountUI(props:any) {
     const getStyles=(theme)=>StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: theme=="dark"?"black":"white",
+        backgroundColor:theme=="dark"?"#011F3C":"white",
       },
       scrollContainer: {
         flexGrow: 1,
@@ -107,23 +107,23 @@ function CreateAccountUI(props:any) {
           <View style={styles.inputContainer}>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Name</Text>
-              <CustomInput placeHolder="Enter your name"  onChange={onNameChange} />
+              <CustomInput theme={theme} placeHolder="Enter your name"  onChange={onNameChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Email Address</Text>
-              <CustomInput placeHolder="Enter your email" onChange={onEmailChange} />
+              <CustomInput theme={theme}  placeHolder="Enter your email" onChange={onEmailChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Mobile Number</Text>
-              <CustomInput placeHolder="Enter number" onChange={onMobileNumberChange} />
+              <CustomInput theme={theme}  placeHolder="Enter number" onChange={onMobileNumberChange} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Create Password</Text>
-              <CustomInput placeHolder="Enter password" onChange={onCreatePasswordChange} secureTextEntry={true} />
+              <CustomInput theme={theme}  placeHolder="Enter password" onChange={onCreatePasswordChange} secureTextEntry={true} />
             </View>
             <View style={styles.inputWrapper}>
               <Text style={styles.inputHeading}>Confirm Password</Text>
-              <CustomInput placeHolder="Enter password" onChange={onConfirmPasswordChange} secureTextEntry={true} />
+              <CustomInput theme={theme}  placeHolder="Enter password" onChange={onConfirmPasswordChange} secureTextEntry={true} />
             </View>
 
             <View style={styles.termsContainer}>

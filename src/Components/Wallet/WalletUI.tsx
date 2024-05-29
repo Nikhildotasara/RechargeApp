@@ -2,8 +2,180 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+import { useTheme } from '../../utils/themeProvider.tsx';
+
 const WalletUI = (props:any) => {
   const [amount, setAmount] = useState('₹ 170');
+
+  const {theme}=useTheme();
+
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+    },
+    header: {
+      // backgroundColor:theme=="dark"?"#252E3E":"white",
+
+      padding: 15,
+      alignItems: 'center',
+    },
+    headerTitle: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    content: {
+      flex: 1,
+      padding: 20,
+    },
+    balanceContainer: {
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+      padding: 20,
+      borderRadius: 8,
+      alignItems: 'center',
+      marginBottom: 20,
+    },
+    balanceLabel: {
+      color:theme=="dark"?"white":"black",
+      fontSize: 16,
+    },
+    balance: {
+
+      color:theme=="dark"?"white":"black",
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginTop: 10,
+    },
+    amountContainer: {
+      padding: 20,
+      borderRadius: 8,
+      marginBottom: 20,
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+
+    },
+    amountLabel: {
+
+      color:theme=="dark"?"white":"black",
+      fontSize: 16,
+      marginBottom: 10,
+    },
+    input: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      padding: 10,
+      fontSize: 16,
+      borderRadius: 5,
+      marginBottom: 10,
+      color:theme=="dark"?"white":"black", 
+    },
+    amountHint: {
+
+      color:theme=="dark"?"white":"black",      fontSize: 12,
+      marginBottom: 10,
+    },
+    recommendedTitle: {
+      color: '#333',
+      fontSize: 14,
+      marginBottom: 10,
+    },
+    recommendedContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+    recommendedButton: {
+      // backgroundColor: '#fff',
+      backgroundColor: '#007aff',
+      borderWidth: 1,
+      borderColor: '#007aff',
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+      width: '22%',
+    },
+    recommendedText: {
+color:"white",
+      // color:theme=="dark"?"white":"black",
+            fontSize: 14,
+
+    },
+    transactionsContainer: {
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+      padding: 20,
+      borderRadius: 8,
+      marginBottom: 20,
+      // borderWidth:1,
+      // maxHeight:300,
+      flex:1
+    },
+    transactionHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 20,
+    },
+    transactionTitle: {
+
+      color:theme=="dark"?"white":"black",
+            fontSize: 18,
+  
+      fontWeight: 'bold',
+    },
+    passbookButton: {
+      backgroundColor: '#007aff',
+      padding: 10,
+      borderRadius: 5,
+    },
+    passbookText: {
+      color: '#fff',
+      fontSize: 14,
+    },
+    transactionList: {
+      marginBottom: 20,
+      // borderWidth:1,
+      // flex:1
+    },
+    transactionItem: {
+      marginBottom: 15,
+    },
+    transactionDate: {
+      
+      color:theme=="dark"?"white":"black",
+      fontSize: 14,
+    },
+    transactionDetails: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    transactionType: {
+      
+      color:theme=="dark"?"white":"black",
+      fontSize: 16,
+    },
+    transactionAmount: {
+      
+      color:theme=="dark"?"white":"black",
+      fontSize: 14,
+    },
+    addButton: {
+      backgroundColor: '#007aff',
+      padding: 15,
+      borderRadius: 8,
+      alignItems: 'center',
+      position:"absolute",
+      bottom:10,
+      width:300,
+      alignSelf:"center",
+      zIndex:2
+    },
+    addButtonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  })
+
+  const styles=getStyles(theme);
 
   const handleRecommendedClick = (value) => {
     setAmount(value);
@@ -27,7 +199,8 @@ const WalletUI = (props:any) => {
               style={styles.input}
               value={amount}
               onChangeText={setAmount}
-              placeholderTextColor="#aaa"
+              // placeholderTextColor="white"
+              
               keyboardType="numeric"
             />
             <Text style={styles.amountHint}>Min ₹10 & Max ₹5,000</Text>
@@ -107,7 +280,7 @@ const WalletUI = (props:any) => {
             </ScrollView>
           </View>
           <TouchableOpacity onPress={handleAddAmount} style={styles.addButton}>
-            <Text style={styles.addButtonText}>Add AAmount</Text>
+            <Text style={styles.addButtonText}>Add Amount</Text>
           </TouchableOpacity>
         </View>
       </View>

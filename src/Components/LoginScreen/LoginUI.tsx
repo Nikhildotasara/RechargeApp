@@ -23,7 +23,7 @@ function LoginUI(props:any) {
     const getStyles=(theme)=>StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: theme === 'dark' ? 'black' : '#F7F7F7',
+        backgroundColor:theme=="dark"?"#011F3C":"white",
       },
       scrollContainer: {
         flexGrow: 1,
@@ -59,7 +59,6 @@ function LoginUI(props:any) {
         width: '100%',
         flex:1,
         alignItems:"center",
-        // backgroundColor:"red"
       },
     
       inputContainerHeading:{
@@ -132,7 +131,7 @@ function LoginUI(props:any) {
 
             <View style={{width:"100%"}}>
             <Text style={styles.inputContainerHeading}>Email Address</Text>
-            <CustomInput placeHolder="Enter your email" theme={theme} onChange={onEmailChange} />
+            <CustomInput  placeHolder="Enter your email" theme={theme} onChange={onEmailChange} />
             </View>
 
             <View style={{width:"100%"}}>

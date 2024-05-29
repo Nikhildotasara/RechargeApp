@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
 
+import { useTheme } from '../../utils/themeProvider';
+
+
 import True5g from "../../assests/true5g.svg"
 import JioTv from "../../assests/jioTv.svg";
 import JioCinema from "../../assests/jioCinema.svg";
@@ -13,6 +16,124 @@ import JioCloud from "../../assests/jioCloud.svg"
 
 
 const PlanDetails = () => {
+
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    safeContainer: {
+      flex: 1,
+      backgroundColor: theme==="dark"?"#02203D":"white",
+    },
+    container: {
+      flex: 1,
+    },
+    contentContainer: {
+      // padding: 16,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#007bff',
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    headerText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      // color: theme==="dark"?"#252E3E":"white",
+      marginLeft: 16,
+    },
+    planSummary: {
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+      
+    },
+    planSummaryRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 8,
+
+    },
+    planSummaryValue: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color:theme=="dark"?"white":"black"
+    },
+    planSummaryLabel: {
+      fontSize: 16,
+      // color: '#888',
+      color:theme=="dark"?"white":"black"
+    },
+    extraBenefits: {
+
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    extraBenefitsTitle: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 8,
+      color: theme==="dark"?"white":"black",
+    },
+    benefitItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    benefitIcon: {
+      width: 24,
+      height: 24,
+      marginRight: 8,
+    },
+    benefitTextWrapper: {
+      flex: 1,
+      paddingLeft:10
+    },
+    benefitTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: theme==="dark"?"white":"black",
+    },
+    benefitDescription: {
+      fontSize: 14,
+      color: theme==="dark"?"white":"black",
+    },
+    detailsSection: {
+
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    detailsText: {
+      fontSize: 14,
+      color: theme==="dark"?"white":"black",
+    },
+    rechargeButton: {
+      backgroundColor: '#007bff',
+      padding: 16,
+      borderRadius: 8,
+      alignItems: 'center',
+      marginBottom: 16,
+      maxWidth:400,
+      alignSelf:"center"
+    },
+    rechargeButtonText: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+  })
+
+  const styles=getStyles(theme);
+
+
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -22,8 +143,8 @@ const PlanDetails = () => {
         <View style={styles.planSummary}>
 
 <View style={{alignItems:"center",justifyContent:"space-between",flexDirection:"row" ,marginBottom:10}}>
-    <Text style={{fontSize:23,fontWeight:"800"}}>Plan Price</Text>
-    <Text style={{fontSize:23,fontWeight:"800"}}>Rs 299</Text>
+    <Text style={{fontSize:23,fontWeight:"800",color:theme=="dark"?"white":"black"}}>Plan Price</Text>
+    <Text style={{fontSize:23,fontWeight:"800", color:theme=="dark"?"white":"black" }}>Rs 299</Text>
 </View>
 
           <View style={styles.planSummaryRow}>
@@ -101,107 +222,109 @@ const PlanDetails = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  safeContainer: {
-    flex: 1,
-    backgroundColor: '#f8f8f8',
-  },
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    // padding: 16,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#007bff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginLeft: 16,
-  },
-  planSummary: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  planSummaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-  },
-  planSummaryValue: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  planSummaryLabel: {
-    fontSize: 16,
-    color: '#888',
-  },
-  extraBenefits: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  extraBenefitsTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  benefitItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  benefitIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 8,
-  },
-  benefitTextWrapper: {
-    flex: 1,
-    paddingLeft:10
-  },
-  benefitTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  benefitDescription: {
-    fontSize: 14,
-    color: '#888',
-  },
-  detailsSection: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  detailsText: {
-    fontSize: 14,
-    color: '#888',
-  },
-  rechargeButton: {
-    backgroundColor: '#007bff',
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 16,
-    maxWidth:400,
-    alignSelf:"center"
-  },
-  rechargeButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+// const styles = StyleSheet.create({
+//   safeContainer: {
+//     flex: 1,
+//     backgroundColor: '#f8f8f8',
+//   },
+//   container: {
+//     flex: 1,
+//   },
+//   contentContainer: {
+//     // padding: 16,
+//   },
+//   header: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     backgroundColor: '#007bff',
+//     padding: 16,
+//     borderRadius: 8,
+//     marginBottom: 16,
+//   },
+//   headerText: {
+//     fontSize: 20,
+//     fontWeight: 'bold',
+//     color: '#fff',
+//     marginLeft: 16,
+//   },
+//   planSummary: {
+//     backgroundColor: '#fff',
+//     padding: 16,
+//     borderRadius: 8,
+//     marginBottom: 16,
+//   },
+//   planSummaryRow: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     marginBottom: 8,
+//   },
+//   planSummaryValue: {
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//   },
+//   planSummaryLabel: {
+//     fontSize: 16,
+//     color: '#888',
+//   },
+//   extraBenefits: {
+//     backgroundColor: '#fff',
+//     padding: 16,
+//     borderRadius: 8,
+//     marginBottom: 16,
+//   },
+//   extraBenefitsTitle: {
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//     marginBottom: 8,
+//     color:"black"
+//   },
+//   benefitItem: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     marginBottom: 16,
+//   },
+//   benefitIcon: {
+//     width: 24,
+//     height: 24,
+//     marginRight: 8,
+//   },
+//   benefitTextWrapper: {
+//     flex: 1,
+//     paddingLeft:10
+//   },
+//   benefitTitle: {
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//     color:"black"
+//   },
+//   benefitDescription: {
+//     fontSize: 14,
+//     color: '#888',
+//   },
+//   detailsSection: {
+//     backgroundColor: '#fff',
+//     padding: 16,
+//     borderRadius: 8,
+//     marginBottom: 16,
+//   },
+//   detailsText: {
+//     fontSize: 14,
+//     color: '#888',
+//   },
+//   rechargeButton: {
+//     backgroundColor: '#007bff',
+//     padding: 16,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginBottom: 16,
+//     maxWidth:400,
+//     alignSelf:"center"
+//   },
+//   rechargeButtonText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+// });
 
 export default PlanDetails;

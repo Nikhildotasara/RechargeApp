@@ -34,7 +34,7 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:theme=="dark"?"black":"white"
+      backgroundColor:theme=="dark"?"#011F3C":"white",
     },
     backButton: {
       height: 50,
@@ -94,10 +94,10 @@ const OtpUI: React.FC<OtpUIProps> = ({ handleBack, handleVerify, handleOtpChange
         <OtpInput onOtpChange={handleOtpChange} />
         <CustomCTA onPress={handleVerify} customText="Verify" />
         <TouchableOpacity disabled={timer>0 ? true :false} style={styles.resendContainer}>
-          <Text style={{fontSize:17,color:"black" ,fontWeight:"600"}}>Send code again</Text>
+          <Text style={{fontSize:17,color: theme=="dark"?"white":"black",fontWeight:"600"}}>Send code again</Text>
 
           {timer>0 ? 
-          <Text>{timer}s</Text>: null
+          <Text style={{color: theme=="dark"?"white":"black",}}>{timer}s</Text>: null
           }
         </TouchableOpacity>
       </View>

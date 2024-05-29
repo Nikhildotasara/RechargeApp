@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import { Clipboard } from 'react-native';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+import { useTheme } from '../../utils/themeProvider';
+
+
 import Copy from "../../assests/copy.svg"
 import Repeat from "../../assests/repeat.svg"
 import Share from "../../assests/share.svg"
@@ -11,8 +14,131 @@ import Split from "../../assests/split.svg"
 const TransactionResultUI = () => {
   const copyToClipboard = (text) => {
     Clipboard.setString(text);
-    alert('Copied to clipboard!');
+   
   };
+
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+      // padding: 16,
+    },
+    header: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#fff',
+      backgroundColor: 'green',
+      padding: 16,
+      textAlign: 'center',
+      borderRadius: 4,
+    },
+    card: {
+      marginTop: 16,
+      padding: 16,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 8,
+      
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+    },
+    headerSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    icon: {
+      width: 40,
+      height: 40,
+      marginRight: 16,
+    },
+    headerText: {
+      flex: 1,
+    },
+    title: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color:theme=="dark"?"white":"black",
+    },
+    subtitle: {
+      fontSize: 16,
+      color:theme=="dark"?"white":"black",
+    },
+    amount: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color:theme=="dark"?"white":"black",
+    },
+    section: {
+      marginTop: 16,
+    },
+    sectionTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 8,
+      color:theme=="dark"?"white":"black",
+    },
+    detailRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingVertical: 4,
+    },
+    detailLabel: {
+      fontSize: 16,
+      color:theme=="dark"?"white":"black",
+    },
+    detailValue: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color:theme=="dark"?"white":"black",
+    },
+    detailValueRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    copyText: {
+      fontSize: 16,
+      color:theme=="dark"?"white":"black",
+      marginLeft: 8,
+    },
+    footer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginTop: 16,
+    },
+    footerButton: {
+      flex: 1,
+      alignItems: 'center',
+      padding: 12,
+      // borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 8,
+      marginHorizontal: 4,
+      justifyContent:"space-around"
+  
+    },
+    footerButtonText: {
+      fontSize: 16,
+      color:theme=="dark"?"white":"black",
+      textAlign:"center"
+    },
+    helpButton: {
+      marginTop: 16,
+      padding: 16,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 8,
+      alignItems: 'center',
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+    },
+    helpButtonText: {
+      fontSize: 16,
+      color:theme=="dark"?"white":"black",
+    },
+  })
+
+  const styles=getStyles(theme);
 
   return (
     <ScrollView style={styles.container}>
@@ -138,6 +264,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    color:"black"
   },
   subtitle: {
     fontSize: 16,
@@ -155,6 +282,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
+    color:"black"
   },
   detailRow: {
     flexDirection: 'row',
@@ -163,6 +291,7 @@ const styles = StyleSheet.create({
   },
   detailLabel: {
     fontSize: 16,
+    color:"black"
   },
   detailValue: {
     fontSize: 16,

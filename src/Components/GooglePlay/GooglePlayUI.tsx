@@ -3,9 +3,105 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 
 import GooglePlayIcon from "../../assests/googlePlay.svg"; // Replace with the actual path to your SVG component
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+import { useTheme } from '../../utils/themeProvider';
+
+
 const GooglePlayUI = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [amount, setAmount] = useState('170');
+
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flexGrow: 1,
+
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+    },
+    header: {
+      backgroundColor: '#007BFF',
+      padding: 15,
+    },
+    headerText: {
+      color:theme=="dark"?"white":"black",
+      fontSize: 20,
+      fontWeight: 'bold',
+
+    },
+    content: {
+      padding: 20,
+    },
+    iconContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 20,
+    },
+    textContainer: {
+      marginLeft: 15,
+    },
+    title: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color:theme=="dark"?"white":"black",
+    },
+    subtitle: {
+      fontSize: 14,
+      // color: '#888',
+      color:theme=="dark"?"white":"black",
+    },
+    inputContainer: {
+      marginBottom: 15,
+      
+    },
+    input: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      padding: 10,
+      borderRadius: 5,
+      color:theme=="dark"?"white":"black"
+    },
+    note: {
+      // color: '#888',
+      color:theme=="dark"?"white":"black",
+      marginBottom: 20,
+    },
+    recommendedContainer: {
+      marginBottom: 30,
+    },
+    recommendedTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      color:theme=="dark"?"white":"black",
+    },
+    recommendedButtons: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    recommendedButton: {
+      borderWidth: 1,
+      borderColor: '#007BFF',
+      padding: 10,
+      borderRadius: 5,
+    },
+    recommendedButtonText: {
+      // color: '#007BFF',
+      color:theme=="dark"?"white":"black",
+    },
+    buyNowButton: {
+      backgroundColor: '#007BFF',
+      padding: 15,
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    buyNowButtonText: {
+      color: '#fff',
+      fontWeight: 'bold',
+      fontSize: 16,
+    },
+  })
+  const styles=getStyles(theme);
+
 
   return (
     <View style={styles.container}>
@@ -28,17 +124,17 @@ const GooglePlayUI = () => {
             keyboardType="phone-pad"
             value={mobileNumber}
             onChangeText={setMobileNumber}
-            placeholderTextColor="#888"
+            placeholderTextColor={theme=="dark"?"white":"black"}
           />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="₹ 170"
+            placeholder="₹"
             keyboardType="numeric"
             value={amount}
             onChangeText={setAmount}
-            placeholderTextColor="#888"
+            placeholderTextColor={theme=="dark"?"white":"black"}
           />
         </View>
         <Text style={styles.note}>Min ₹10 & Max ₹5,000</Text>
@@ -64,85 +160,85 @@ const GooglePlayUI = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '#fff',
-  },
-  header: {
-    backgroundColor: '#007BFF',
-    padding: 15,
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  content: {
-    padding: 20,
-  },
-  iconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  textContainer: {
-    marginLeft: 15,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#888',
-  },
-  inputContainer: {
-    marginBottom: 15,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
-  },
-  note: {
-    color: '#888',
-    marginBottom: 20,
-  },
-  recommendedContainer: {
-    marginBottom: 30,
-  },
-  recommendedTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  recommendedButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  recommendedButton: {
-    borderWidth: 1,
-    borderColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
-  },
-  recommendedButtonText: {
-    color: '#007BFF',
-  },
-  buyNowButton: {
-    backgroundColor: '#007BFF',
-    padding: 15,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  buyNowButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flexGrow: 1,
+//     backgroundColor: '#fff',
+//   },
+//   header: {
+//     backgroundColor: '#007BFF',
+//     padding: 15,
+//   },
+//   headerText: {
+//     color: '#fff',
+//     fontSize: 20,
+//     fontWeight: 'bold',
+//   },
+//   content: {
+//     padding: 20,
+//   },
+//   iconContainer: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     marginBottom: 20,
+//   },
+//   textContainer: {
+//     marginLeft: 15,
+//   },
+//   title: {
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+//   subtitle: {
+//     fontSize: 14,
+//     color: '#888',
+//   },
+//   inputContainer: {
+//     marginBottom: 15,
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: '#ccc',
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+//   note: {
+//     color: '#888',
+//     marginBottom: 20,
+//   },
+//   recommendedContainer: {
+//     marginBottom: 30,
+//   },
+//   recommendedTitle: {
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//     marginBottom: 10,
+//   },
+//   recommendedButtons: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//   },
+//   recommendedButton: {
+//     borderWidth: 1,
+//     borderColor: '#007BFF',
+//     padding: 10,
+//     borderRadius: 5,
+//   },
+//   recommendedButtonText: {
+//     color: '#007BFF',
+//   },
+//   buyNowButton: {
+//     backgroundColor: '#007BFF',
+//     padding: 15,
+//     borderRadius: 5,
+//     alignItems: 'center',
+//   },
+//   buyNowButtonText: {
+//     color: '#fff',
+//     fontWeight: 'bold',
+//     fontSize: 16,
+//   },
+// });
 
 export default GooglePlayUI;
 

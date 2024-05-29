@@ -8,12 +8,18 @@ import {
   SafeAreaView,
   StatusBar
 } from 'react-native';
+import { useTheme } from '../../utils/themeProvider';
+
+import { useNavigation } from '@react-navigation/native';
 
 import Eye from "../../assests/eye.svg"
 import Back from "../../assests/backButton.svg";
 
 
 const ResetPasswordUI = (props) => {
+
+
+  const navigation=useNavigation()
 
     const {handleResetPassword}=props;
   const [newPassword, setNewPassword] = useState('');
@@ -24,7 +30,86 @@ const ResetPasswordUI = (props) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
- 
+  const {theme} = useTheme();
+  const getStyles = (theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      // backgroundColor: '#fff',
+      backgroundColor:theme==='dark'?"#011f3c":"white"
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: 16,
+      color:"black"
+    },
+    content: {
+      padding: 16,
+      // borderWidth:1,
+      flex:1,
+      justifyContent:"space-around",
+      // color:"black"
+    },
+    title: {
+      fontSize: 28,
+      fontWeight: 'bold',
+      marginBottom: 8,
+      color:theme==='dark'?"white":"black",
+    },
+    subtitle: {
+      fontSize: 16,
+      color:theme==='dark'?"white":"black",
+      marginBottom: 24,
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 8,
+      marginBottom: 8,
+      paddingHorizontal: 8,
+      
+    },
+    input: {
+      flex: 1,
+      height: 48,
+      // color:theme==='dark'?"white":"black",
+    },
+    icon: {
+      padding: 8,
+    },
+    hint: {
+      // color: '#666',\
+      color:theme==='dark'?"white":"black",
+      marginBottom: 24,
+    },
+    button: {
+      backgroundColor: '#007bff',
+      borderRadius: 8,
+      paddingVertical: 12,
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    buttonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    login: {
+      alignItems: 'center',
+    },
+    loginText: {
+      // color: '#666',
+      color:theme==='dark'?"white":"black",
+    },
+    loginLink: {
+      color: '#007bff',
+      fontWeight: 'bold',
+    },
+  })
+
+  const styles = getStyles(theme);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,6 +132,7 @@ const ResetPasswordUI = (props) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
+            placeholderTextColor={theme==='dark'?"white":"black"}
             placeholder="Enter password"
             secureTextEntry={secureTextEntry}
             onChangeText={setNewPassword}
@@ -63,6 +149,7 @@ const ResetPasswordUI = (props) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
+            placeholderTextColor={theme==='dark'?"white":"black"}
             placeholder="Confirm new password"
             secureTextEntry={secureTextEntry}
             onChangeText={setConfirmPassword}
@@ -74,7 +161,7 @@ const ResetPasswordUI = (props) => {
         <TouchableOpacity style={styles.button} onPress={handleResetPassword}>
           <Text style={styles.buttonText}>Reset password</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.login}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.login}>
           <Text style={styles.loginText}>Already have an account? <Text style={styles.loginLink}>Log in</Text></Text>
         </TouchableOpacity>
       </View>
@@ -82,74 +169,5 @@ const ResetPasswordUI = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-  },
-  content: {
-    padding: 16,
-    // borderWidth:1,
-    flex:1,
-    justifyContent:"space-around"
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 24,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    marginBottom: 8,
-    paddingHorizontal: 8,
-  },
-  input: {
-    flex: 1,
-    height: 48,
-  },
-  icon: {
-    padding: 8,
-  },
-  hint: {
-    color: '#666',
-    marginBottom: 24,
-  },
-  button: {
-    backgroundColor: '#007bff',
-    borderRadius: 8,
-    paddingVertical: 12,
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  login: {
-    alignItems: 'center',
-  },
-  loginText: {
-    color: '#666',
-  },
-  loginLink: {
-    color: '#007bff',
-    fontWeight: 'bold',
-  },
-});
 
 export default ResetPasswordUI;

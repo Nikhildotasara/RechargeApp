@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+import { useTheme } from '../../utils/themeProvider';
+
 const transactions = [
   {
     id: '1',
@@ -44,7 +46,71 @@ const transactions = [
 
 const TransactionUI = (props) => {
 
+  const {theme}=useTheme();
     const {handleTransaction}=props;
+
+    const getStyles=(theme)=>StyleSheet.create({
+      container: {
+        flex: 1,
+        // backgroundColor: '#fff',
+        backgroundColor:theme=="dark"?"#011F3C":"white",
+      },
+      monthContainer: {
+        marginVertical: 8,
+        // backgroundColor:theme=="dark"?"#252E3E":"white",
+        // backgroundColor:"red",
+      },
+      monthText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        // backgroundColor: '#f0f0f0',
+        backgroundColor:theme=="dark"?"#252E3E":"white",
+        padding: 8,
+        color:theme=="dark"?"white":"black",
+      },
+      transactionContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+        // backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        borderBottomColor: '#f0f0f0',
+         backgroundColor:theme=="dark"?"#252E3E":"white",
+        
+      },
+      icon: {
+        width: 40,
+        height: 40,
+        marginRight: 16,
+      },
+      transactionDetails: {
+        flex: 1,
+      },
+      transactionName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        // color:"black"
+         color:theme=="dark"?"white":"black",
+      },
+      transactionDate: {
+        fontSize: 14,
+        color:theme=="dark"?"white":"black",
+      },
+      transactionAmountContainer: {
+        alignItems: 'flex-end',
+      },
+      transactionAmount: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color:theme=="dark"?"white":"black",
+      },
+      transactionFrom: {
+        fontSize: 14,
+        color:theme=="dark"?"white":"black",
+      },
+    })
+
+    const styles=getStyles(theme)
 
   const renderTransaction = ({ item }) => (
     <TouchableOpacity  onPress={handleTransaction} style={styles.transactionContainer}>
@@ -83,55 +149,6 @@ const TransactionUI = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  monthContainer: {
-    marginVertical: 8,
-  },
-  monthText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    backgroundColor: '#f0f0f0',
-    padding: 8,
-  },
-  transactionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  icon: {
-    width: 40,
-    height: 40,
-    marginRight: 16,
-  },
-  transactionDetails: {
-    flex: 1,
-  },
-  transactionName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  transactionDate: {
-    fontSize: 14,
-    color: '#666',
-  },
-  transactionAmountContainer: {
-    alignItems: 'flex-end',
-  },
-  transactionAmount: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  transactionFrom: {
-    fontSize: 14,
-    color: '#666',
-  },
-});
+
 
 export default TransactionUI;

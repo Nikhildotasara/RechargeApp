@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, View ,ToastAndroid
+} from 'react-native';
+
+import { signUp } from '../../apiService.js';
 
 // importing UI
 import CreateAccountUI from '../../Components/CreateAccount/CreateAccountUI.tsx';
@@ -17,6 +20,12 @@ const CreateAccount: React.FC<CreateAccountProps> = ({ navigation }) => {
   const [createPassword, setCreatePassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isTermsAccepted, setIsTermsAccepted] = useState<boolean>(false);
+
+  // useEffect(()=>{
+  //   ToastAndroid.show("dsfasdf",ToastAndroid.SHORT)
+  // })
+
+
 
   const onNameChange = (name: string) => {
     setName(name);
@@ -42,15 +51,52 @@ const CreateAccount: React.FC<CreateAccountProps> = ({ navigation }) => {
     setIsTermsAccepted(!isTermsAccepted);
   };
 
-  const handleContinue = () => {
-    console.log(name);
-    console.log(email);
-    console.log(mobileNumber);
-    console.log(createPassword);
-    console.log(confirmPassword);
 
-    navigation.navigate('OtpScreen');
+  const showToast = (message) => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
   };
+
+  const handleContinue = async() => {
+    checkPassword(createPassword,confirmPassword)
+
+    if(checkPassword(createPassword,confirmPassword)){
+      try {
+        const userData={UserName:name,Email:email,Pass:createPassword,MobileNo:mobileNumber};
+        const response=await signUp(userData);
+        console.log(response)
+        
+        if(response.success){
+          navigation.navigate('OtpScreen');
+        }
+
+        Alert.alert("Success","SignUp success");
+    
+      } catch (error) {
+        console.log("Error in signup")
+        Alert.alert("Error","Error in signup")
+      }
+    }
+    else{
+     showToast("Error in account creation")
+    }
+
+  };
+
+
+  const checkPassword=(createPassword,confirmPassword)=>{
+    if(createPassword===confirmPassword && createPassword.length>=0 && confirmPassword.length>=0){
+
+      ToastAndroid.show("Passwords did not match",ToastAndroid.SHORT)
+
+      return true;
+    }
+    else{
+
+      ToastAndroid.show("Passwords did not match",ToastAndroid.SHORT)
+      return false;
+    }
+
+  }
 
   const handleLogin = () => {
     navigation.navigate('LoginScreen');

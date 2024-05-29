@@ -1,72 +1,3 @@
-// import React from 'react';
-// import { Text, View, StyleSheet } from 'react-native';
-// import PropTypes from 'prop-types';
-
-// // Importing SVG
-// import LogoSvg from '../../assests/logo.svg'; 
-
-// // Importing custom elements
-// import CustomCTA from '../../elements/CustomCTA';
-
-// function LoginUI(props:any) {
-//     const { handleSignIn, handleCreateAccount } = props;
-
-//     return (
-//         <View style={styles.container}>
-//             <LogoSvg />
-
-//             <View style={styles.textContainer}>
-//                 <Text style={styles.titleText}>Explore the app</Text>
-//                 <Text style={styles.subtitleText}>Recharge Your Way, Anytime, Anywhere</Text>
-//             </View>
-
-//             <View style={styles.buttonContainer}>
-//                 <CustomCTA onPress={handleSignIn} customText="Sign In" />
-//                 <CustomCTA onPress={handleCreateAccount} customText="Create Account" />
-//             </View>
-//         </View>
-//     );
-// }
-
-// LoginUI.propTypes = {
-//     handleSignIn: PropTypes.func.isRequired,
-//     handleCreateAccount: PropTypes.func.isRequired,
-// };
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'space-around',
-//     },
-//     textContainer: {
-//         width: '80%',
-//         maxWidth: 400,
-//         height: '18%',
-//         alignItems: 'center',
-//         justifyContent: 'space-evenly',
-//     },
-//     titleText: {
-//         fontSize: 30,
-//         fontWeight: '700',
-//         color: 'black',
-//     },
-//     subtitleText: {
-//         fontSize: 17,
-//         fontWeight: '400', // Adjusted to a valid value
-//         lineHeight: 21.5,
-//         textAlign: 'center',
-//     },
-//     buttonContainer: {
-//         width: '100%',
-//         maxWidth: 420,
-//         alignItems: 'center',
-//         justifyContent: 'space-evenly',
-//         height: '23%',
-//     },
-// });
-
-// export default LoginUI;
 
 import React from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
@@ -87,7 +18,7 @@ const getStyles = (theme) => StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: theme === 'dark' ? 'black' : 'white',
+        backgroundColor:theme=="dark"?"#011F3C":"white",
     },
     textContainer: {
         width: '80%',
@@ -134,7 +65,7 @@ function LoginUI(props) {
             <View style={styles.buttonContainer}>
                 <CustomCTA onPress={handleSignIn} customText="Sign In" />
                 <CustomCTA onPress={handleCreateAccount} color="white" customText="Create Account" />
-                <Button title="Toggle Theme" onPress={toggleTheme} />
+                {/* <Button title="Toggle Theme" onPress={toggleTheme} /> */}
             </View>
         </View>
     );

@@ -37,8 +37,8 @@ const VerifyOtpUI: React.FC<VerifyOtpUIProps> = ({ handleBack, handleVerify, han
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:theme=="dark"?"black":"white"
-    },
+    
+      backgroundColor:theme=="dark"?"#011F3C":"white",    },
     backButton: {
       height: 50,
       width: 50,
@@ -78,6 +78,15 @@ const VerifyOtpUI: React.FC<VerifyOtpUIProps> = ({ handleBack, handleVerify, han
       marginTop: 50,
       alignItems:"center"
     },
+    rememberPassowrd:{
+      
+      color: theme=="dark"?"white":"black",
+    }
+    ,
+    timerText:{
+      
+      color: theme=="dark"?"white":"black",
+    }
   })
 
   const styles=getStyles(theme);
@@ -97,10 +106,10 @@ const VerifyOtpUI: React.FC<VerifyOtpUIProps> = ({ handleBack, handleVerify, han
         <OtpInput onOtpChange={handleOtpChange} />
         <CustomCTA onPress={handleVerify} customText="Verify" />
         <TouchableOpacity disabled={timer>0 ? true :false} style={styles.resendContainer}>
-          <Text style={{fontSize:17,color:"black" ,fontWeight:"600"}}>Send code again</Text>
+          <Text style={[{fontSize:17 ,fontWeight:"600"},{ color: theme=="dark"?"white":"black",}]}>Send code again</Text>
 
           {timer>0 ? 
-          <Text>{timer}s</Text>: null
+          <Text style={styles.timerText}>{timer}s</Text>: null
           }
         </TouchableOpacity>
       </View>

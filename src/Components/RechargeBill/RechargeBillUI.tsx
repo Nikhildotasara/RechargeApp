@@ -6,12 +6,21 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+
+import { useTheme } from '../../utils/themeProvider';
+
 import { useNavigation } from '@react-navigation/native';
 
 import UPI from "../../assests/upi.svg";
 import Wallet from "../../assests/wallet.svg"
 
 const MyApp = () => {
+
+
+  const {theme}=useTheme();
+
+
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const navigation=useNavigation();
@@ -22,6 +31,223 @@ const MyApp = () => {
   const handleDetails=()=>{
     navigation.navigate("PlanDetailsScreen")
   }
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme==="dark"?"#011F3C":"white",
+      // padding: 16,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    headerText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginLeft: 16,
+    },
+    profileSection: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      // backgroundColor: '#fff',
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    profileImage: {
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+    },
+    profileInfo: {
+      marginLeft: 16,
+    },
+    profileNumber: {
+      fontSize: 16,
+      // color:"black"
+
+      color: theme==="dark"?"white":"black",
+    },
+    planSection: {
+      // backgroundColor: '#fff',
+
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    planHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 8,
+    },
+    planPrice: {
+      fontSize: 24,
+      fontWeight: 'bold',
+
+      color: theme==="dark"?"white":"black",
+    },
+    changePlanButton: {
+      padding: 8,
+      backgroundColor: '#007bff',
+      borderRadius: 4,
+    },
+    changePlanText: {
+      color: '#fff',
+      fontWeight: 'bold',
+    },
+    planDetail: {
+      fontSize: 16,
+      marginBottom: 4,
+      // color:"black"
+
+      color: theme==="dark"?"white":"black",
+    },
+    planNote: {
+      fontSize: 12,
+      // color: '#888',
+
+      color: theme==="dark"?"white":"black",
+      marginBottom: 8,
+    },
+    additionalBenefits: {
+      flexDirection: 'row',
+      marginTop: 8,
+    },
+    benefit: {
+      backgroundColor: '#e7f3ff',
+      padding: 8,
+      borderRadius: 4,
+      marginRight: 8,
+    },
+    benefitText: {
+      color: '#007bff',
+    },
+    billSection: {
+      // backgroundColor: '#fff',
+
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    billRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 8,
+    },
+    billLabel: {
+      fontSize: 16,
+      // color:"black"
+
+      color: theme==="dark"?"white":"black",
+    },
+    billAmount: {
+      fontSize: 16,
+      // color:"black"
+
+      color: theme==="dark"?"white":"black",
+    },
+    totalLabel: {
+      fontSize: 18,
+      fontWeight: 'bold',
+
+      color: theme==="dark"?"white":"black",
+    },
+    totalAmount: {
+      fontSize: 18,
+      fontWeight: 'bold',
+
+      color: theme==="dark"?"white":"black",
+    },
+    savingsText: {
+      fontSize: 14,
+      color: 'green',
+      marginTop: 8,
+    },
+    payButton: {
+      backgroundColor: '#007bff',
+      padding: 16,
+      borderRadius: 8,
+      alignItems: 'center',
+      minWidth:300,
+      alignSelf:"center"
+    },
+    payButtonText: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    bottomModal: {
+      justifyContent: 'flex-end',
+      margin: 0,
+      
+    },
+    modalContent: {
+      // backgroundColor: 'white',
+      backgroundColor: theme==="dark"?"#252E3E":"white",
+      padding: 22,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      height: '50%',
+      alignItems: 'center',
+    },
+    modalTitle: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 16,
+      color: theme==="dark"?"white":"black",
+      
+
+    },
+    paymentOption: {
+      width: '100%',
+      padding: 16,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ddd',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    paymentOptionTextWrapper: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+    },
+    paymentOptionText: {
+      fontSize: 16,
+      color: theme==="dark"?"white":"black",
+
+    },
+    walletBalance: {
+      fontSize: 14,
+      color: theme==="dark"?"white":"black",
+    },
+    payButtonModal: {
+      backgroundColor: '#007bff',
+      padding: 16,
+      borderRadius: 8,
+      alignItems: 'center',
+      marginTop: 16,
+      width: '100%',
+    },
+    payButtonTextModal: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+  })
+
+  const styles=getStyles(theme);
+
+
+
 
 
 
@@ -64,7 +290,7 @@ const MyApp = () => {
           </View>
 
           <TouchableOpacity onPress={handleDetails}  style={styles.benefit}>
-            <Text>Details</Text>
+            <Text style={{color:"black"}}>Details</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -120,183 +346,5 @@ const MyApp = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8f8f8',
-    // padding: 16,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 16,
-  },
-  profileSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-  profileInfo: {
-    marginLeft: 16,
-  },
-  profileNumber: {
-    fontSize: 16,
-  },
-  planSection: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  planHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  planPrice: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  changePlanButton: {
-    padding: 8,
-    backgroundColor: '#007bff',
-    borderRadius: 4,
-  },
-  changePlanText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  planDetail: {
-    fontSize: 16,
-    marginBottom: 4,
-  },
-  planNote: {
-    fontSize: 12,
-    color: '#888',
-    marginBottom: 8,
-  },
-  additionalBenefits: {
-    flexDirection: 'row',
-    marginTop: 8,
-  },
-  benefit: {
-    backgroundColor: '#e7f3ff',
-    padding: 8,
-    borderRadius: 4,
-    marginRight: 8,
-  },
-  benefitText: {
-    color: '#007bff',
-  },
-  billSection: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  billRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-  },
-  billLabel: {
-    fontSize: 16,
-  },
-  billAmount: {
-    fontSize: 16,
-  },
-  totalLabel: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  totalAmount: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  savingsText: {
-    fontSize: 14,
-    color: 'green',
-    marginTop: 8,
-  },
-  payButton: {
-    backgroundColor: '#007bff',
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    minWidth:300,
-    alignSelf:"center"
-  },
-  payButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  bottomModal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 22,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    height: '50%',
-    alignItems: 'center',
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  paymentOption: {
-    width: '100%',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  paymentOptionTextWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-  },
-  paymentOptionText: {
-    fontSize: 16,
-  },
-  walletBalance: {
-    fontSize: 14,
-    color: '#888',
-  },
-  payButtonModal: {
-    backgroundColor: '#007bff',
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 16,
-    width: '100%',
-  },
-  payButtonTextModal: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 export default MyApp;

@@ -29,6 +29,7 @@ const OtpInput: React.FC<OtpInputProps> = ({ onOtpChange }) => {
         borderRadius: 10,
         textAlign: 'center',
         fontSize: 20,
+        fontWeight:"700",
 
         color:theme=="dark"?"white":"black"
       },

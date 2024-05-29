@@ -7,15 +7,16 @@ function CustomInput(props) {
 
     return (
         <TextInput
-        placeholderTextColor={"black"}
+        placeholderTextColor={theme=="dark"?"white":"black"}
 
         
 
         secureTextEntry={secure}
         
             onChangeText={(text) => { onChange(text) }}
-            style={[styles.input, { backgroundColor: theme === "dark" ? "white" : "white",paddingLeft:12 }]}
+            style={[styles.input, { backgroundColor:theme=="dark"?"#252E3E":"white",paddingLeft:12 ,color:theme=="dark"?"white":"black" }]}
             placeholder={placeHolder}
+            
         />
     );
 }
@@ -23,7 +24,7 @@ function CustomInput(props) {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 0.5,
-        backgroundColor:"white",
+        // backgroundColor:theme=="dark"?"#011F3C":"white",
         width: "95%",
         borderRadius: 4,
         fontSize:17

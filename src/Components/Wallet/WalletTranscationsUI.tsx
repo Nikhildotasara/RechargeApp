@@ -12,6 +12,9 @@ import Modal from 'react-native-modal';
 import DatePicker from 'react-native-date-picker';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
+import { useTheme } from '../../utils/themeProvider';
+
+
 
 const transactions = [
   {
@@ -44,7 +47,143 @@ const transactions = [
   },
 ];
 
-const TransactionItem = ({ item }) => (
+const TransactionItem = ({ item }) =>  {
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      // backgroundColor: '#fff',
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+      
+    },
+    header: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginVertical: 20,
+    },
+    month: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginVertical: 10,
+      paddingLeft:8,
+      // color:"black"
+
+      color:theme=="dark"?"white":"black",
+    },
+    transactionItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingVertical: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ddd',
+      paddingLeft:12
+    },
+    transactionDetails: {
+      flex: 1,
+      paddingLeft:10
+    },
+    description: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      
+      color:theme=="dark"?"white":"black",
+      
+    },
+    date: {
+      fontSize: 14,
+
+      color:theme=="dark"?"white":"black",
+    },
+    amount: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      paddingRight:20,
+      color:theme=="dark"?"white":"black",
+    },
+    filterButton: {
+      backgroundColor: '#007BFF',
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+      marginVertical: 20,
+      minWidth:190,
+      alignSelf:"center"
+    },
+    filterButtonText: {
+      color: '#fff',
+      fontWeight: 'bold',
+    },
+    modal: {
+      margin: 0,
+      justifyContent: 'flex-end',
+    },
+    modalContent: {
+      height: '90%',
+      backgroundColor: '#fff',
+      padding: 20,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+    },
+    modalHeader: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      color:"black"
+    },
+    closeButton: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+    },
+    closeButtonText: {
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    modalSubHeader: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginTop: 20,
+      color:"black"
+    },
+    datePicker: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+      // borderWidth:1,
+      justifyContent:"space-around",
+      minHeight:80
+    },
+    dateInput: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      padding: 5,
+      borderRadius: 5,
+      marginLeft: 10,
+      flex: 1,
+      minHeight:50,
+      color:"black"
+    },
+    dateIcon: {
+      fontSize: 25,
+      marginLeft: 10,
+    },
+    checkboxContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    modalButtons: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 20,
+    },
+  })
+
+  const styles=getStyles(theme);
+
+  return (
+
   <View style={styles.transactionItem}>
     {item.icon}
     <View style={styles.transactionDetails}>
@@ -53,7 +192,11 @@ const TransactionItem = ({ item }) => (
     </View>
     <Text style={styles.amount}>{item.amount}</Text>
   </View>
-);
+  )
+
+}
+
+
 
 const App = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -61,6 +204,145 @@ const App = () => {
   const [isToDatePickerVisible, setToDatePickerVisible] = useState(false);
   const [fromDate, setFromDate] = useState(new Date());
   const [toDate, setToDate] = useState(new Date());
+
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      // backgroundColor: '#fff',
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+      
+    },
+    header: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginVertical: 20,
+    },
+    month: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginVertical: 10,
+      paddingLeft:8,
+      // color:"black"
+
+      color:theme=="dark"?"white":"black",
+    },
+    transactionItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingVertical: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ddd',
+      paddingLeft:12
+    },
+    transactionDetails: {
+      flex: 1,
+      paddingLeft:10
+    },
+    description: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      
+      color:theme=="dark"?"white":"black",
+      
+    },
+    date: {
+      fontSize: 14,
+
+      color:theme=="dark"?"white":"black",
+    },
+    amount: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      paddingRight:20,
+      color:theme=="dark"?"#011F3C":"white",
+    },
+    filterButton: {
+      backgroundColor: '#007BFF',
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+      marginVertical: 20,
+      minWidth:190,
+      alignSelf:"center"
+    },
+    filterButtonText: {
+      color: '#fff',
+      fontWeight: 'bold',
+    },
+    modal: {
+      margin: 0,
+      justifyContent: 'flex-end',
+    },
+    modalContent: {
+      height: '90%',
+      // backgroundColor: '#fff',
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+      padding: 20,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+    },
+    modalHeader: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      // color:"black"
+      color:theme=="dark"?"white":"black",
+    },
+    closeButton: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+    },
+    closeButtonText: {
+      fontSize: 18,
+      color:theme=="dark"?"white":"black",
+      fontWeight: 'bold',
+    },
+    modalSubHeader: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginTop: 20,
+      // color:"black"
+      color:theme=="dark"?"white":"black",
+    },
+    datePicker: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+      // borderWidth:1,
+      justifyContent:"space-around",
+      minHeight:80
+    },
+    dateInput: {
+      borderWidth: 1,
+      borderColor: '#ccc',
+      padding: 5,
+      borderRadius: 5,
+      marginLeft: 10,
+      flex: 1,
+      minHeight:50,
+      // color:"black"
+      color:theme=="dark"?"white":"black",
+    },
+    dateIcon: {
+      fontSize: 25,
+      marginLeft: 10,
+    },
+    checkboxContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    modalButtons: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 20,
+    },
+  })
+
+  const styles=getStyles(theme);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -103,7 +385,7 @@ const App = () => {
 
           <Text style={styles.modalSubHeader}>Choose Time Period</Text>
           <View style={styles.datePicker}>
-            <Text>From Date:</Text>
+            <Text style={{color:theme=="dark"?"white":"black",}}>From Date:</Text>
             <TouchableOpacity style={{flexDirection:"row",maxWidth:200,alignItems:"center"}} onPress={() => setFromDatePickerVisible(true)}>
               <TextInput
                 style={styles.dateInput}
@@ -116,7 +398,7 @@ const App = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.datePicker}>
-            <Text>To Date:</Text>
+            <Text style={{color:theme=="dark"?"white":"black",}}>To Date:</Text>
             <TouchableOpacity style={{flexDirection:"row",maxWidth:200,alignItems:"center"}} onPress={() => setToDatePickerVisible(true)}>
               <TextInput
                 style={styles.dateInput}
@@ -130,11 +412,11 @@ const App = () => {
 
           <Text style={styles.modalSubHeader}>Payment Type</Text>
           <View style={styles.checkboxContainer}>
-            <Text>Added Money</Text>
+            <Text style={{color:theme=="dark"?"white":"black",}}>Added Money</Text>
             {/* <CheckBox value={false} /> */}
           </View>
           <View style={styles.checkboxContainer}>
-            <Text>Recharges</Text>
+            <Text style={{color:theme=="dark"?"white":"black",}}>Recharges</Text>
             {/* <CheckBox value={false} /> */}
           </View>
 
@@ -181,7 +463,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginVertical: 10,
-    paddingLeft:8
+    paddingLeft:8,
+    color:"black"
   },
   transactionItem: {
     flexDirection: 'row',
@@ -193,10 +476,12 @@ const styles = StyleSheet.create({
   },
   transactionDetails: {
     flex: 1,
+    paddingLeft:10
   },
   description: {
     fontSize: 16,
     fontWeight: 'bold',
+    
   },
   date: {
     fontSize: 14,
@@ -235,6 +520,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
+    color:"black"
   },
   closeButton: {
     position: 'absolute',
@@ -249,12 +535,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 20,
+    color:"black"
   },
   datePicker: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
-    borderWidth:1,
+    // borderWidth:1,
     justifyContent:"space-around",
     minHeight:80
   },
@@ -265,7 +552,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: 10,
     flex: 1,
-    minHeight:50
+    minHeight:50,
+    color:"black"
   },
   dateIcon: {
     fontSize: 25,

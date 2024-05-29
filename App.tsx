@@ -14,6 +14,7 @@ function App() {
 
 
     <View style={{flex:1}}>
+      
 
       <ThemeProvider>
       <NavigationWrapper/>

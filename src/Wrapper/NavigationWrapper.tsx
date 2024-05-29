@@ -43,21 +43,26 @@ function NavigationWrapper() {
             <Stack.Screen name='LoginScreen' component={LoginScreen}/>
             <Stack.Screen name='CreateAccount' component={CreateAccount}/>
             <Stack.Screen name="OtpScreen" component={OtpScreen}/>
+
             <Stack.Screen name="HomeScreen" component={HomeScreen}/>
             <Stack.Screen name='MobileRechargeScreen' component={MobileRecharge}/>
             <Stack.Screen name='RechargePlansScreen' component={RechargePlans}/>
             <Stack.Screen name='RechargeBillScreen' component={RechargeBill}/>
+            
             <Stack.Screen name='PlanDetailsScreen' component={PlanDetails}/>
             <Stack.Screen name='WalletScreen' component={WalletScreen}/>
             <Stack.Screen name='DthScreen' component={DthScreen}/>
             <Stack.Screen name='D2hIdProviderScreen' component={D2hIdProviderScreen}/>
+            
             <Stack.Screen name='D2hBillDetailsScreen' component={D2hBillDetails}/>
             <Stack.Screen name='WalletTranscationsScreen' component={WalletTranscations}/>
             <Stack.Screen name='GooglePlayScreen' component={GooglePlay}/>
             <Stack.Screen name='HelpScreen' component={HelpScreen}/>
+            
             <Stack.Screen name='TransactionScreen' component={TransactionScreen}/>
             <Stack.Screen name='RechargeResult' component={RechargeResult}/>
             <Stack.Screen name='ForgotPasswordScreen' component={ForgotPassword}/>
+            
             <Stack.Screen name='VerifyOtpScreen' component={VerifyOtp}/>
             <Stack.Screen name='ResetPasswordScreen' component={ResetPassword}/>
             <Stack.Screen name='PasswordChangedScreen' component={PasswordChanged}/>

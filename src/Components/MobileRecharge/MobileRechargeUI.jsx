@@ -4,6 +4,9 @@ import UserSvg from '../../assests/userImage.svg';
 import AirtelSvg from '../../assests/airtel.svg';
 
 import React, {useState, useEffect} from 'react';
+
+import {useTheme} from '../../utils/themeProvider';
+
 import {
   View,
   Text,
@@ -17,6 +20,8 @@ import MobileRechargeUpperBar from './MobileRechargeUpperBar';
 
 function MobileRechargeUI(props: any) {
   const {handleRecharge} = props;
+
+  const {theme} = useTheme();
 
   const [recents, setRecents] = useState([
     {
@@ -114,12 +119,117 @@ function MobileRechargeUI(props: any) {
     </TouchableOpacity>
   );
 
+  const getStyles = theme =>
+    StyleSheet.create({
+      container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: theme === 'dark' ? '#011F3C' : 'white',
+      },
+      inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 10,
+        alignItems: 'center',
+        // backgroundColor: theme === 'dark' ? '#252E3E' : 'white',
+      },
+      phoneInput: {
+        borderRadius: 17,
+        width: '80%',
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+
+        backgroundColor: theme === 'dark' ? '#252E3E' : 'white',
+        borderColor: theme == 'dark' ? 'white' : 'black',
+        color: theme == 'dark' ? 'white' : 'black',
+
+        // backgroundColor:
+      },
+      myNumberContainer: {
+        minWidth: 357,
+        marginTop: 10,
+        borderRadius: 18,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowOffset: {width: 0, height: 2},
+        shadowRadius: 5,
+        elevation: 5,
+        backgroundColor: '#fff',
+        padding: 10,
+        backgroundColor: theme === 'dark' ? '#252E3E' : 'white',
+      },
+      myNumberText: {
+        fontSize: 18,
+        color: theme == 'dark' ? 'white' : 'black',
+        fontWeight: '600',
+      },
+      phoneNumber: {
+        fontSize: 15,
+        color: theme == 'dark' ? 'white' : 'black',
+      },
+      rechargeButton: {
+        backgroundColor: '#0466C8',
+        borderRadius: 16,
+        width: 80,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      rechargeButtonText: {
+        color: 'white',
+      },
+      recentsContainer: {
+        borderRadius: 12,
+        width: '90%',
+        flex: 1,
+        marginTop: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowOffset: {width: 0, height: 2},
+        shadowRadius: 5,
+        elevation: 5,
+        backgroundColor: '#fff',
+        padding: 10,
+        backgroundColor: theme === 'dark' ? '#252E3E' : 'white',
+      },
+      recentsTitle: {
+        fontSize: 20,
+        color: theme === 'dark' ? 'white' : 'black',
+        fontWeight: '600',
+        marginBottom: 10,
+      },
+      recentItem: {
+        marginTop: 5,
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderColor: theme == 'dark' ? 'white' : 'black',
+
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      },
+      recentItemText: {
+        color: theme === 'dark' ? 'white' : 'black',
+        fontSize: 16,
+      },
+    });
+
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.container}>
       <MobileRechargeUpperBar customName="Mobile Recharge" />
 
       <View style={styles.inputContainer}>
-        <TextInput placeholder="Enter Phone number" style={styles.phoneInput} />
+        <TextInput
+          placeholderTextColor={theme == 'dark' ? 'white' : 'black'}
+          placeholder="Enter Phone number"
+          style={styles.phoneInput}
+        />
 
         <TouchableOpacity>
           <ContactSvg />

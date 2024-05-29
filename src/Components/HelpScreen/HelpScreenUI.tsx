@@ -4,6 +4,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import MobileRechargeUpperBar from '../MobileRecharge/MobileRechargeUpperBar';
 
 
+import { useTheme } from '../../utils/themeProvider';
+
+
 import CallSvg from "../../assests/call.svg"
 import ChatSvg from "../../assests/chat.svg"
 import BillSvg from "../../assests/bill.svg"
@@ -11,6 +14,42 @@ import TicketSvg from "../../assests/ticket.svg"
 import PhoneMan from "../../assests/phoneMan.svg"
 
 const HelpScreenUI = () => {
+
+  const {theme}=useTheme();
+
+  const getStyles=(theme)=>StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor:theme=="dark"?"#011F3C":"white",
+      alignItems:"center"
+    },
+    header: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginVertical: 16,
+      paddingLeft:10
+      , color:theme=="dark"?"white":"black",
+    },
+    button: {
+      backgroundColor:theme=="dark"?"#252E3E":"white",
+      padding: 16,
+      borderRadius: 8,
+      marginVertical: 8,
+      flexDirection:"row",
+      alignItems:"center",
+      minWidth:360
+      
+    },
+    buttonText: {
+      fontSize: 18,
+      paddingLeft:17,
+      color:theme=="dark"?"white":"black",
+      
+    },
+  })
+
+  const styles=getStyles(theme)
+
   return (
     <View style={styles.container}>
 

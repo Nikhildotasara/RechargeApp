@@ -8,34 +8,19 @@ import {
   StatusBar,
   Image
 } from 'react-native';
+import { useTheme } from '../../utils/themeProvider';
 
 
 import Logo from "../../assests/logo.svg";
 
 const PasswordChangedUI = (props) => {
-  
-    const {handleBackToLogin}=props;
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.content}>
-       
-       <Logo/>
-        <Text style={styles.title}>Password changed</Text>
-        <Text style={styles.subtitle}>Your password has been changed successfully</Text>
-        <TouchableOpacity style={styles.button} onPress={handleBackToLogin}>
-          <Text style={styles.buttonText}>Back to login</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
+  const {theme} = useTheme();
+  const getStyles = (theme)=>StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
+    backgroundColor:theme==='dark'?"#011f3c":"white",
+
     justifyContent: 'center',
   },
   content: {
@@ -51,6 +36,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 8,
+    color:theme==="dark"?"white":"black"
   },
   subtitle: {
     fontSize: 16,
@@ -70,6 +56,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-});
+})
+
+const styles = getStyles(theme);
+  
+    const {handleBackToLogin}=props;
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.content}>
+       
+       <Logo/>
+        <Text style={styles.title}>Password changed</Text>
+        <Text style={styles.subtitle}>Your password has been changed successfully</Text>
+        <TouchableOpacity style={styles.button} onPress={handleBackToLogin}>
+          <Text style={styles.buttonText}>Back to login</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
 
 export default PasswordChangedUI;
